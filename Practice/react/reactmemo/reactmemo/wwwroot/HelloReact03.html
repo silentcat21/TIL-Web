@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello React 3</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/javascript">
+        ReactDOM.render(
+            React.createElement(
+                "div",
+                { "style": { "border": "1px solid red "}},
+                React.createElement("h1", { "style": { "color": "blue"}}, "안녕하세여~"),
+                React.createElement("h2", { "style": { "color": "red"}}, "안녕하세여~"),
+                React.createElement("h3", { "style": { "color": "yellow"}}, "안녕하세여~") 
+            ),
+            document.getElementById("root")
+        );
+    </script>
+</body>
+</html>

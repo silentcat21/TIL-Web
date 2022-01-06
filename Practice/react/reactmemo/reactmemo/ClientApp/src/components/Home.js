@@ -6,7 +6,7 @@ export class Home extends Component {
   render () {
     return (
       <div>
-        <h1>¾È³çÇÏ¼¼¿ä.</h1>
+        <h1>ì•ˆë…•í•˜ì„¸ìš” ë¦¬ì•¡íŠ¸</h1>
       </div>
     );
   }
