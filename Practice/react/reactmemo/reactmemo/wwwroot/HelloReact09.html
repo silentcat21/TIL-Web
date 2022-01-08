@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello React 08 - Props</title>
+    <title>Hello React 09 - 구조 파괴 할당 Destructuring Assignment</title>
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -14,7 +14,7 @@
     <div id="root"></div>
     <script type="text/babel">
         //        ^ JSX를 사용하여 HTML을 JavaScript로 전환
-        let title = "JSX 표현식(Expression)";
+        let title = "구조 파괴 할당(튜플 분해)";
 
         let seeSharp = {
             title: "C# 교과서",
@@ -34,7 +34,8 @@
         const Copyright = () => {
             return <p>Copyright &copy;</p>;
         }
-        function BookCard(props) {
+
+        function BookCardOther(props) {
             //console.log(props);
             //console.log(Object.keys(props));
             return(
@@ -56,11 +57,35 @@
             );
         }
 
+        function BookCard({ title, description, price }) {
+            //console.log(props);
+            //console.log(Object.keys(props));
+            return(
+                <div className="container mb-2">
+                    <div className="row">
+                        <div className="col-12">
+                            {title}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-2">
+                            {title}
+                        </div>
+                        <div className="col-10">
+                            {description}
+                            <hr />
+                            {price + '원'}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
         function BookList() {
             return(
                 <>
-                    <BookCard title={seeSharp.title} description={seeSharp.description}/>
-                    <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다"/>
+                    <BookCard title={seeSharp.title} description={seeSharp.description} price={30000}/>
+                    <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다" price={55000}/>
                 </>
             );
         }

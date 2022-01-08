@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello React 10 - 조건(3항) 연산자 사용하기</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //        ^ JSX를 사용하여 HTML을 JavaScript로 전환
+        let title = "구조 파괴 할당(튜플 분해)";
+
+        let seeSharp = {
+            title: "C# 교과서",
+            description: "내용 들어오는 곳..."
+        };
+        // JSX, React에서 함수형 컴퍼넌트는 첫글자 대문자 규칙!!!!
+        function BookTitle() {
+            return (
+                <div className="row">
+                    <h1>My book</h1>
+                </div>
+            );
+        }
+        //ECMA-6 화살표형 함수 컴퍼넌트 
+        const BookFooter = () => <p>제가 집필한 책 목록입니다.</p>;
+
+        const Copyright = () => {
+            return <p>Copyright &copy;</p>;
+        }
+
+        function BookCardOther(props) {
+            //console.log(props);
+            //console.log(Object.keys(props));
+            return(
+                <div className="container mb-2">
+                    <div className="row">
+                        <div className="col-12">
+                            {props.title}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-2">
+                            {props.title}
+                        </div>
+                        <div className="col-10">
+                            {props.description}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function BookCard({ title, description, price }) {
+            //console.log(props);
+            //console.log(Object.keys(props));
+            return(
+                <div className="container mb-2">
+                    <div className="row">
+                        <div className="col-12">
+                            {title}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-2">
+                            {title}
+                        </div>
+                        <div className="col-10">
+                            {description}
+                            <hr />
+                            {price + '원'}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function BookListOther(props) {
+
+            if (props.sortOrder === "ASC"){
+                return (
+                    <>
+                    <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다" price={55000}/>
+                    <BookCard title={seeSharp.title} description={seeSharp.description} price={30000}/>
+                    </>
+                );
+            }
+            else{
+                return (
+                    <>
+                    <BookCard title={seeSharp.title} description={seeSharp.description} price={30000}/>
+                    <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다" price={55000}/>
+                    </>
+                );
+            }
+        }
+
+        function BookList(props) {
+            return(
+                <>
+                        {
+                            (props.sortOrder === "ASC")
+                        ?
+                            <>
+                            <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다" price={55000}/>
+                            <BookCard title={seeSharp.title} description={seeSharp.description} price={30000}/>
+                            </>
+                            :
+                            <>
+                            <BookCard title={seeSharp.title} description={seeSharp.description} price={30000}/>
+                            <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다" price={55000}/>
+                            </>
+                        }
+                </>
+            );
+        }
+
+        function BookApp() {
+            return (
+                <>
+                    <BookTitle/>
+                    <BookList sortOrder="DESC"/> 
+                    <BookFooter/>
+                    <Copyright/>
+                </>
+            );
+        }
+
+        // 최종 렌더링 코드가 깔끔해짐
+        ReactDOM.render(
+            <BookApp/>,
+            document.getElementById("root")
+        );
+    </script>
+</body>
+</html>

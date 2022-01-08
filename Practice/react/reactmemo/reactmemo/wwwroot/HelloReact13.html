@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello React 13 - 컬렉션 형태의 데이터 출력</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //        ^ JSX를 사용하여 HTML을 JavaScript로 전환
+        let title = "클래스로 컴퍼넌트 만들기";
+
+        let seeSharp = {
+            title: "C# 교과서",
+            description: "내용 들어오는 곳..."
+        };
+        // JSX, React에서 함수형 컴퍼넌트는 첫글자 대문자 규칙!!!!
+        function BookTitle() {
+            return (
+                <div className="row">
+                    <h1>My book</h1>
+                </div>
+            );
+        }
+        //ECMA-6 화살표형 함수 컴퍼넌트 
+        const BookFooter = () => <p>제가 집필한 책 목록입니다.</p>;
+
+        const Copyright = () => {
+            return <p>Copyright &copy;</p>;
+        }
+
+        function BookCard({ title, description, price }) {
+            //console.log(props);
+            //console.log(Object.keys(props));
+            return(
+                <div className="container mb-2">
+                    <div className="row">
+                        <div className="col-12">
+                            {title}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-2">
+                            {title}
+                        </div>
+                        <div className="col-10">
+                            {description}
+                            <hr />
+                            {price + '원'}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        class BookList extends React.Component {
+            state = {
+                theme: 'blue'    
+            }
+            blueTheme = () => this.setState({theme: 'blue'});
+            whiteTheme = () => this.setState({theme: 'white'});
+            
+            render() {
+                return(
+                
+
+                    <>
+                        <div>{this.state.theme ==="white" ? "white theme" : "blue theme" }</div>
+                        <div>
+                                <button onClick={ () => {this.setState({theme: 'white'});} }>White1</button>
+                                <button onClick={ this.whiteTheme }>White2</button>
+                                <button onClick={ () => {this.setState({theme: 'blue'});} }>Blue 1</button>
+                                <button onClick={ this.blueTheme }>Blue 2</button>
+                        </div>
+                        {
+                            this.props.books.map(book => {
+                                return <BookCard key={book.id} title={book.title} description={book.description} price={book.price}/>
+                            })
+                        }   
+                    </>
+
+                    
+                );
+            }
+            
+        }
+        // 함수형 컴퍼넌트
+        function BookAppOther() {
+            return (
+                <>
+                    <BookTitle/>
+                    <BookList sortOrder="DESC"/> 
+                    <BookFooter/>
+                    <Copyright/>
+                </>
+            );
+        }
+
+        const books = [
+                { id: 1, title: "C# 교과서", description: "", price: 30000},
+                { id: 2, title: "ASP.NET & Core를 다루는 기술 ", description: "ASP.NET & Core", price: 55000},
+                { id: 3, title: "Blazor", description: "Blazor", price: 30000},
+            ];
+
+        //리액트 클래스형 컴퍼넌트
+        class BookApp extends React.Component {
+            render() {
+                return (
+                    <>
+                        <BookTitle/>
+                        <BookList sortOrder="ASC" books={ books }/> 
+                        <BookFooter/>
+                        <Copyright/>
+                    </>
+                );
+            }
+        }
+
+
+        // 최종 렌더링 코드가 깔끔해짐
+        ReactDOM.render(
+            <BookApp/>,
+            document.getElementById("root")
+        );
+    </script>
+</body>
+</html>

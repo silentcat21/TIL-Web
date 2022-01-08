@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello React 08 - Props</title>
+    <title>Hello React 12 - 클래스형 컴퍼넌트</title>
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -14,7 +14,7 @@
     <div id="root"></div>
     <script type="text/babel">
         //        ^ JSX를 사용하여 HTML을 JavaScript로 전환
-        let title = "JSX 표현식(Expression)";
+        let title = "클래스로 컴퍼넌트 만들기";
 
         let seeSharp = {
             title: "C# 교과서",
@@ -34,47 +34,85 @@
         const Copyright = () => {
             return <p>Copyright &copy;</p>;
         }
-        function BookCard(props) {
+
+        function BookCard({ title, description, price }) {
             //console.log(props);
             //console.log(Object.keys(props));
             return(
                 <div className="container mb-2">
                     <div className="row">
                         <div className="col-12">
-                            {props.title}
+                            {title}
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-2">
-                            {props.title}
+                            {title}
                         </div>
                         <div className="col-10">
-                            {props.description}
+                            {description}
+                            <hr />
+                            {price + '원'}
                         </div>
                     </div>
                 </div>
             );
         }
 
-        function BookList() {
-            return(
-                <>
-                    <BookCard title={seeSharp.title} description={seeSharp.description}/>
-                    <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다"/>
-                </>
-            );
-        }
+        class BookList extends React.Component {
+            state = {
+                theme: 'blue'    
+            }
+            blueTheme = () => this.setState({theme: 'blue'});
+            whiteTheme = () => this.setState({theme: 'white'});
+            
+            render() {
+                return(
+                
 
-        function BookApp() {
+                    <>
+                        <div>{this.state.theme ==="white" ? "white theme" : "blue theme" }</div>
+                        <div>
+                                <button onClick={ () => {this.setState({theme: 'white'});} }>White1</button>
+                                <button onClick={ this.whiteTheme }>White2</button>
+                                <button onClick={ () => {this.setState({theme: 'blue'});} }>Blue 1</button>
+                                <button onClick={ this.blueTheme }>Blue 2</button>
+                        </div>
+                        <BookCard title={seeSharp.title} description={seeSharp.description} price={30000}/>
+                        <BookCard title="ASP.NET &amp; Core를 다루는 기술" description="ASP.NET &amp; Core를 다루는 기술 책 입니다" price={55000}/>  
+                    </>
+
+                    
+                );
+            }
+            
+        }
+        // 함수형 컴퍼넌트
+        function BookAppOther() {
             return (
                 <>
                     <BookTitle/>
-                    <BookList/>
+                    <BookList sortOrder="DESC"/> 
                     <BookFooter/>
                     <Copyright/>
                 </>
             );
         }
+
+        //리액트 클래스형 컴퍼넌트
+        class BookApp extends React.Component {
+            render() {
+                return (
+                    <>
+                        <BookTitle/>
+                        <BookList sortOrder="ASC"/> 
+                        <BookFooter/>
+                        <Copyright/>
+                    </>
+                );
+            }
+        }
+
 
         // 최종 렌더링 코드가 깔끔해짐
         ReactDOM.render(
