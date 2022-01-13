@@ -8,6 +8,7 @@ import { About } from './components/About';
 import { Contact } from './components/Contact';
 
 import './custom.css'
+import TodoListInMemory from './components/TodoListInMemory';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -20,6 +21,7 @@ export default class App extends Component {
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/about' component={About} />
         <Route path='/contact' component={Contact} />
+        <Route path='/TodoListInMemory' component={TodoListInMemory} />
       </Layout>
     );
   }
