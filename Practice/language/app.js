@@ -18,3 +18,5 @@ const haveGirlFriend = null;
 console.log(haveGirlFriend);
 let something;
 console.log(something)
+var something;
+console.log(something)
