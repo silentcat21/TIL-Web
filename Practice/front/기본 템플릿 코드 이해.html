@@ -1,0 +1,128 @@
+<!DOCTYPE html> <!--브라우저가 다르게 렌더링ㄹ 하지 않도록 하기 위해 선언  -->
+<html lang="ko-kr"> <!-- 문서 언어 설정 -->
+<head>
+    <meta charset="UTF-8"> <!-- meta 태그: 문서 전반에 걸친 정보를 표현하기 위함, charset: 문자 인코딩 설정(유니코드) -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--인터넷 익스플로러에서 최신 표준모드로 렌더링되도록 하는 설정, 호환성 이슈로 기본적으로 포함되는 것이 좋음 -->
+    <!--주요 meta name 값 -->
+    <meta name="description" content="HTML 문서에 대한 설명, 구글 엔진이 의외로 참고 안함"> <!-- name: 메타 정보 이름 -->
+    <!--viewport: 반응형 웹 관련 태그, -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <!--view port: 현재 화면에 보여지고 있는 직사각형 영역, 웹브라우저 상에서는 현재 창에서 문서를 볼 수 있는 전체 화면을 의미 -->
+        <!--meta viewport 설정: 초기 viewport에 대한 설정을 의미, width: 초기 뷰포트 너비 설정 주요 값: device-width(현재 디바이스에서의 너비) 또는 양의 정수-->
+        <!--user-scalable 웹페이지 확대 허용 여부 설정, no 또는 yes -->
+    <meta name="keywords" content="HTML, CSS, JAVASCRIPT">
+    <meta name="author" content="Silentcat"><!--페이지 작성자 -->
+    <!--LINK: html 문서에 필요한 외부 데이터를 가져오기 위해 사용, 주로 css파일과 아이콘 파일을 가져오기 위해 사용함 -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="favicon.ico">
+        <!--rel: html 문서와 외부 데이터와의 관계 표시, 주요 값: stylesheet, icon 등-->
+        <!--href: 외부 데이터 파일 위치 지정, 주요 값: 파일 경로(상대 경로 또는 절대 경로로 설정) -->
+    <!--SCRIPT: js코드를 html 문서 내에서 작성할 때 사용, js 코드는 파일 형태로 link태그를 사용해서 가져오거나,
+     script태그를 사용해 직접 html 문서에 넣을 수 있음 -->
+        <script src="main.js"></script><!-- 가장 일반적인 사용법, 스크립트 코드는 보통 맨 마지막에 추가함 -->
+    <title>Document</title>
+</head>
+<!--주요 body 내의 태그 -->
+<body>
+    <!--<h1 ~h6>: 제목 태그, 제목 폰트 사이즈 차이가 존재,
+    현업에서는 브라우저 호환성을 위해 태그에 표현 서식이 들어있는 경우 모두 삭제하고 별도 css로 적용함 -->
+    <h1>123</h1>
+    <h2>123</h2>
+    <!--<p>: 문단을 표시하는 태그 -->
+    <p>문단을 하나로 나타내는 태그</p>
+    <!--<a>: href(링크, 경로 주소)를 넣어서 링크를 나타내는 태그  -->
+    <a href="http://naver.com" target="_blank">네이버 가기</a>
+        <!--href: 하이퍼 링크 URL, URL 또는 tel:전화번호, mailto:이메일 주소 등 다른 값 기입 가능 -->
+        <!--target: 링크된 URL 이동 방법, _self :현재 브라우저에서 띄움, _blank :새로운 브라우저 탭에 띄움-->
+    <!--ol,ul,li: 리스트 관련 태그로 모던 웹에서 많이 사용됨 -->
+        <!--ol: 순서가 있는 태그 -->
+        <ol>
+            <li>아침</li>
+            <li>점심</li>
+        </ol>
+        <!--ul: 순서가 없는 태그 -->
+        <ul>
+            <li>주식</li>
+            <li>비트코인</li>
+        </ul>
+        <!--li 태그를 사용해서 각 리스트 아이템을 표시 -->
+    <!--img: 이미지 삽입 태그 -->
+        <img src="mnlogo.png" alt="브랜드 이미지">
+        <!--src: 이미지 파일 위치, 상대경로 또는 절대경로로 설정 alt: 이미지 대체 텍스트 
+        alt는 웹 접근성을 높이는 !필수 속성!처럼 다루는 것이 좋음(구글 SEO 문서에서도 alt를 필수 권장함) -->
+    <!--div: division의 약자로, html 문서의 특정 부분을 지정하는데 사용
+    화면에 표시가 달라지는 부분은 없는 특이한 태그,
+    모던 웹에서 css또는 javascript로 html 문서의 특정 부분을 제어할 때 사용 -->
+        <div>특정 부분 지정</div>
+    <!--table: 표 구현을 위한 태그 -->
+        <table>
+            <thead>
+                <tr>
+                    <th>제목 열1</th>
+                    <th>제목 열2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>내용 열1</td>
+                    <td>내용 열2</td>
+                </tr>
+                <tr>
+                    <td>내용 열3</td>
+                    <td>내용 열4</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>표의 마지막1</td>
+                    <td>표의 마지막2</td>
+                </tr>
+            </tfoot>
+        </table>
+        <!--thead나 tfoot은 표에서 한 번도 안나오거나, 한 번만 나와야 함, tfoot은 thead보다 뒤에 위치해야 함 -->
+        <!--
+            thead: 제목으로 구성된 열들을 가진 행을 표시
+            th: 제목으로 구성된 각 열을 표시
+            tbody: 표의 내용을 나타내는 행들을 표시
+            tr: 표의 내용을 나타내는 각 행들을 표시
+            td: 표의 내용을 나타내는 각 열들을 표시
+            tfoot: 표의 마지막 행을 표시
+            thead, tbody, tfoot은 html5에서 정의된 태그로 tr과 td로만 구성해도 호환성에는 문제는 없음,
+            
+         -->
+    <!-- 셀 수정 -->
+         <!--colspan: 열 확장, rowspan: 행 확장 -->
+         <table>
+             <tr>
+                 <td colspan="2">열 확장</td>
+             </tr>
+             <tr>
+                 <td>열1</td>
+                 <td>열2</td>
+             </tr>
+         </table>
+
+         <table border="1">
+            <tr>
+                <td colspan="2">열 확장</td>
+                <td>열3</td>
+            </tr>
+            <tr>
+                <td>열1</td>
+                <td>열2</td>
+                <td>열3</td>
+            </tr>
+        </table>
+        <table border="1">
+            <tr>
+                <td rowspan="2">행 확장</td>
+                <td>열1</td>
+                <td>열4</td>
+            </tr>
+            <tr>
+                <td>열2</td>
+                <td>열3</td>
+            </tr>
+        </table>
+</body>
+</html>
