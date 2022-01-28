@@ -124,5 +124,82 @@
                 <td>열3</td>
             </tr>
         </table>
+    <!--form: 사용자 입력을 받는 태그, input 태그 등과 같이 사용됨
+        주요속성:
+                action: 사용자 입력 받은 데이터를 처리할 URL
+                method: HTTP method, 주요 값: post(POST메서드)또는 get(GET 메서드)
+                target: 링크된 URL 이동 방법 지정, _self: 현재 브라우저에서 띄움, _blank: 새로운 브라우저에서 탭 띄움 -->
+    
+    <!--input: 사용자 데이터를 입력받는 주요 태그, 주요 속성 외에도 다양한 속성을 가지고 있으므로, 필요시 링크 페이지 (https://www.w3schools.com/tags/tag_input.asp)
+        type: 사용자 입력 받는 인터페이스 설정, 주요값: text, button, checkbox, color, email, radio 등 추가 링크 (https://velog.io/@jay_kimjh/form-%EC%9A%94%EC%86%8C-%EC%A0%95%EB%A6%AC)
+        maxlength: 사용자 입력 문자열 최대 길이, 주요값: 정수
+        minlength: 사용자 입력 문자열 최소 길이, 주요값: 정수
+        autofocus: 페이지 로드시, 해당 사용자 입력창에 커서가 자동으로 놓이도록 하는 설정, 주요값: autofocus
+        autocomplete: 자동완성 기능 설정, 주요값: on 또는 off-->
+        <h3>form 테스트</h3>
+        <form action="login.html" method="post">
+            ID: <input type="text" name="id"/> PW: <input type="text" name="pw"/>
+        </form>
+        <form action="login.html" method="post">
+            ID: <input type="button" value="입력버튼" name="id"/> PW: <input type="checkbox" name="pw"/>
+            <input type="text" name="id" value="자동완성" autocomplete="on"/>
+        </form>
+    <!--Semantic Web: 시멘틱 웹이란, 웹페이지 각 요소에 의미를 부여해서, 단순 키워드 중심 검색을 뛰어 넘어, '의미'와 '연관성'
+        을 기반으로 보다 진보된 검색 또는 서비스가 가능토록 하는 시도. HTML5에 시멘틱 웹을 위해, 관련 태그들이 제공됨.
+            시멘틱 웹 태그:
+            header: 헤더를 의미
+            nav: 내비게이션을 의미
+            aside: 옆에 위치하는 부분을 의미
+            section: 본문의 여러 내용(article)을 포함하는 부분을 의미
+            article: 본문의 주 내용이 들어가는 부분을 의미
+            footer: 하단부(footer)를 의미 
+        웹페이지의 각 부분을 시멘틱 웹 태그로 구성하면, 검색엔진등에서 각 부분에 대해 보다 잘 이해할 수 있음-->
+        
+    <!--알아둘 사항!!
+        웹 표준: 월드 와이드 웹(World Wide Web, WWW)의 측면을 서술하고 정의하는 공식 기술 규격
+            - W3C(World Wide Web Consortium)권고안에 따라 정의된 웹 표준
+            - HTML 버전에 따라 deprecated 되는 태그 및 속성이 존재함
+                HTML Tag list(https://www.w3schools.com/TAGS/default.ASP)
+            - 작성한 HTML 페이지가 표준에 부합하는지 확인하는 방법
+                W3C validator(https://validator.w3.org/)에서 URL 또는 HTML 파일 업로드 후 검사 및 검토
+        웹 접근성:
+            - 이미지 태그(img)에 대체 텍스트(art 속성)넣기, 청각 장애인을 위해 영상에 자막 넣기, 키보드로 웹
+            페이지 인터페이스 접근 가능 기능 등 환경적 제한이 있는 사용자(고령자 또는 장애인)를 고려하여 웹
+            페이지를 작성하는 기법
+            - 웹 접근성 인증마크도 있으나, 현실적으로 스타트업 등에서는 구현이 어려움(인증 테스트를 받는데만 100만원 필요)
+                간단한 웹 접근성 테스트(https://accessibility.kr/)
+        크로스 브라우징:
+            - 다양한 웹브라우저상에서의 동일한 사용자 경험을 위한 기술 또는 방법을 의미
+            - 다양한 웹브라우저 존재, 웹브라우저별 html 문서 표현에 차이가 존재하며, 최신 표준은 지원되지 않는 경우가 있음
+                인터넷 익스플로러가 문제 소지가 가장 많으므로, 해당 브라우저만 간단히 고려하면 됨-->
+    <!--이미지 
+            - 이미지는 비트맵과 벡터 이미지로 구분됨
+                비트맵 이미지는 픽셀 단위로 색정보를 가진 이미지 데이터(jpeg, jpg, gif, png 파일 확장자)
+                    정교하고 다양한 색상으로 이미지 표현가능, 단 이미지 확대 또는 축소시 이미지가 깨짐
+                벡터 이미지는 수학 정보로 모양 정보를 가진 이미지 데이터(.svg 확장자)
+                    이미지 확대 또는 축소시 이미지가 깨지지 않음
+                    수학적 계산으로 만들기 때문에 표현이 부족할 수 있음
+            
+            - JPEG(JPG): 높은 압축률
+                24비트, 약 1600만 색상, 고해상도 이미지 가능
+                이미지 품질과 용량 조정 가능
+                손실 압축(원본 이미지와 일부 다른 정보)
+            - GIF: 동영상, 짤 과 같은 이미지 가능
+                8비트 색상만 지원
+                비손실 압축(원본 이미지와 동일 정보)
+                투명도 지원 안함
+            - PNG: 투명도 지원되는 GIF 대체 포맷 (투명도: 다른 이미지랑 합성할때 해당 이미지만 넣을 수 있음 배경 투명 예: 로고 등)
+                W3C 권장 이미지 포맷
+                GIF와 같이 동영상 등은 지원되지 않음
+                24비트, 약 1600만 색상으로 고해상도 이미지 가능
+                비손실 압축(원본 이미지와 동일 정보), 단 파일 사이즈가 상대적으로 다른 포맷에 비해 큼
+            - WEBP: 동영상, 투명도 지원되는 JPG, PNG, GIF 모두 대체하는 포맷
+                구글에서 개발
+                하지만, 일부 브라우저에서 미지원(https://caniuse.com/webp)
+                손실/비손실 압축 모두 지원-->
+
+        
+        <br />
+        <br />
 </body>
 </html>
