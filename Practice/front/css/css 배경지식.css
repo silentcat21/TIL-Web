@@ -1,0 +1,28 @@
+/*Selector
+    - html 문서의 특정 부분에 대해 렌더링 방법을 정의하기 위해서는 특정 부분을 선택할 수 있어야 함
+    - CSS Selector는 이런 특정 부분을 선택하기 위한 문법
+    - CSS Selector로 html 문서 특정 부분을 정의한 구문을 Rule Set이라고 부르며, 이와 같은 Rule Set
+      집합을 Style Sheet라고 부름
+    - property(속성)과 각 property 별 설정 가능한 value는 미리 정의되어 있음
+    
+    CSS는 property와 value로만 이루어져 있기 때문에, 쉽다고 생각하지만, 소위 모던 웹(반응형 지원)을 만들기 위해서는
+    다양하고 깊은 CSS문법을 이해하고 있어야 함
+    
+    적용할 태그에 style 속성으로 넣기
+        <!DOCTYPE html>
+        <html>
+            <body>
+                <h1 style="color:blue">Hello world!</h1>
+            <body>
+        <html>
+        가급적 사용하지 않아야 하나 각 태그마다 프로퍼티를 css파일에 클래스로 지정해주는것이 번거롭고
+        파일이 복잡해질 경우가 우려되기 때문에 가끔 사용하긴 함
+    
+    Reset CSS
+        - 웹브라우저마다 각기 다른 default 스타일이 지정되어 있으므로, 이를 초기화하여,
+          다양한 웹브라우저에서도 동일한 스타일로 표시되도록 하는 설정
+        - 스타일을 초기화시켜주는 다양한 기법이 있지만, 최근에는 normalize.css(https://necolas.github.io/normalize.css/)를 많이 사용함 
+          cdn을 통해서 링크시켜줄 수 있음:
+          <link rel="stylesheet"
+            href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'>
+        - 기본 스타일은 남겨두고, 브라우저별로 다를 수 있는 스타일만 초기화*/
