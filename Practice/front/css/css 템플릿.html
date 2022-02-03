@@ -98,6 +98,33 @@
           - a[속성*=값]: a 태그의 요소 중 attr 속성의 값이 "value"를 포함하는 모든 태그. 대소문자 구분
                 <style> a[attr*="value"] { color: red; }</style>
                 언젠가는 힘들때도 있는데..
+        5. 다양한 CSS selector 조합
+          - 태그, 아이디, 클래스 selector를 조합해서 복합적으로 사용 가능
+          - HTML 문서 특정 태그에 여러 클래스가 지정될 경우, 다음과 같이 스페이스를 이용해서 여러 클래스를 설정 할 수 있음
+                class='클래스명 클래스명2 클래스명3'
+                이 경우 css selector는 .클래스명1.클래스명2.클래스명3 와 같이 사용 가능
+                이후부터는 하나의 태그로 이루어진 selector 부터, 여러 조합으로 붙여진 selector도 하나의 selector로 이해하기로 함
+        6. 복합 selector(Combinator)
+          - 태그 안에, 또 다른 태그를 넣을 수 있으므로, 각 태그 또는 요소 간에 부모/자식 관계가 매겨짐
+          - 관계를 기반으로 HTML 문서 특정 부분을 선택할 수 있는 문법 
+          - 후손 셀렉터 (Descendant selector): 스페이스로 표시
+          - 자식 셀렉터 (Child Selector): >로 표시
+          - 인접 형제 셀렉터 (Adjacent Sibling Selector): +로 표시
+          - 일반 형제 셀렉터 (General Sibling Selector): ~로 표시
+
+        6.1 후손 셀렉터: 스페이스로 표시
+          - 부모 태그 안에 있는 모든 하위 태그를 하위 요소, 후손 요소라고 부름
+          - 부모 태그(selector1) 안에 있는 모든 태그 중에 selector2를 선택
+                selector1 selector2 (https://codesandbox.io/s/cssselectorhuson-nmzhi?file=/index.html)
+        
+        6.2 자식 셀렉터: >로 표시
+          - 부모 태그 안에 있는 바로 다음 레벨의 태그(만 적용) 중에 selector2를 선택
+                selector1 > selector2 ()
+        
+        6.3 인접 형제 셀렉터: +로 표시
+          - 태그와 동일 레벨에 위치하고, selector1의 바로 뒤에 위치하는 selector2를 선택
+                즉, selector1과 selector2 사이에 다른 태그 위치시 선택 안됨
+                selector1 + selector2 (https://codesandbox.io/s/css-sibling-selector-t55pw?file=/index.html)
     */
 -->
 </body>
