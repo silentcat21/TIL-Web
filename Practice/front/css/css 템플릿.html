@@ -125,6 +125,33 @@
           - 태그와 동일 레벨에 위치하고, selector1의 바로 뒤에 위치하는 selector2를 선택
                 즉, selector1과 selector2 사이에 다른 태그 위치시 선택 안됨
                 selector1 + selector2 (https://codesandbox.io/s/css-sibling-selector-t55pw?file=/index.html)
+
+        6.4 일반 형제 셀렉터: ~로 표시
+          - 태그1와 동일 레벨에 위치하고, 태그1의 뒤에 위치하는 태그2를 선택
+                즉, 태그1과 태그2 사이에 다른 태그가 위치해도 선택 가능
+                selector ~ selector2
+        
+        7. 가상 클래스 셀렉터(Pseudo-Class Selector)
+          - 가상 클래스는 요소에 특정 이벤트 발생시를 선택하는 문법
+          - 예: h1 태그 요소에 마우스가 올라갔을 때
+        
+        7.1 가상 클래스 종류
+          -link: 방문하지 않은 링크가 적용된 요소(예: a 태그로 링크가 적용된 요소를 한 번도 클릭하지 않은 경우)
+          -visited: 방문한 링크가 적용된 요소(예: a 태그로 링크가 적용된 요소를 한 번이라도 클릭한 경우)
+          -hover: 특정 요소에 마우스가 올라간 상태
+          -active: 링크 요소를 클릭한 상태(예: a 태그로 링크가 적용된 요소를 마우스로 클릭하고 있는(누르고 있는) 상태)
+          -focus: 특정 요소에 포커스가 있는 상태(예: input 태그에 포커스가 있어서, 해당 입력창에 커서가 깜빡이는 상태)
+
+          가상 셀렉터는 가상 요소 셀렉터 이외에는 한개의 콜론(:)을 사용함 (https://drive.google.com/drive/folders/1XNGSltJrqQXPwYqKh8EJU4-Zt3egxAE9)
+
+        7.2 UI 요소 상태 셀렉터, 특정 UI요소 상태에 따른 셀렉터
+          - enabled: UI 셀렉터가 사용 가능한 상태
+          - disabled: UI 셀렉터가 사용 불가능한 상태
+          - checked: UI 셀렉터가 체크된 상태
+          - indeterminate: UI 셀렉터 상태가 결정되지 않은 상태(예: 체크박스에 체크가 안되었거나, 라디오 버튼들이 하나도 체크되지 않은 상태)
+                (https://codesandbox.io/s/css-ui-element-pseudo-class-selector-mecrs?file=/index.html)
+        
+        7.3 구조 가상 클래스 셀렉터()
     */
 -->
 </body>
