@@ -1,0 +1,83 @@
+<!--
+    CSS float 프로퍼티
+     - 요소를 띄우는 프로퍼티로, 웹페이지에서 텍스트와 함께 이미지 배치를 위해 고안되었지만,
+       수평 정렬을 위해 기존에 사용되었음
+     - 수평 정렬을 위해 float, flexbox, grid를 사용할 수 있음
+        - float는 본래 수평 정렬을 위해 고안된 css 프로퍼티가 아님(이미지와 문단 배치를 위한 프로퍼티)
+        - float는 복잡하고 특별한 룰셋을 가지고 있어서, 기본 동작과 달라보이는 다양한 케이스가 나타날 수 있고, 이를 해결하는 공식적인 방안은 없음(비공식적인 방안만 많음)
+        - flexbox 와 grid는 기존에는 호환성 이슈로 사용이 어려웠지만, 최근에는 flexbox의 경우 거의 호환성 이슈가 해결됨
+        - flexbox 와 grid 둘다, 수평 정렬/배치를 위해 고안되었으며, 공식적인 방안을 기반으로 사용 가능하므로 flexbox를 사용하기로 함
+
+    1. float 프로퍼티 값
+     - float를 적용하는 프로퍼티
+      - none: 요소를 떠 있지 않게 함(디폴트)
+      - right: 요소를 오른쪽으로 이동
+      - left: 요소를 왼쪽으로 이동
+    2. clear 프로퍼티 값
+     - float를 해제하는 프로퍼티
+      - none: 양쪽 float를 사용할 수 있음
+      - right: 왼쪽 float를 사용 해제함
+      - left: 오른쪽 float를 사용 해제함
+      - both: 양쪽 float를 사용 해제함
+    
+    3. 정렬과 float 프로퍼티
+     - 왼쪽 수평 정렬과 오른쪽 수평 정렬
+      - 수평 정렬할 요소들을 float를 left로 설정 시 왼쪽 정렬, right로 설정시 오른쪽 정렬
+      - 오른쪽 수평 정렬의 경우, 먼저 설정한 요소부터 오른쪽 끝에 놓여짐
+      - float 사용시 clear를 반드시 해줘야 하므로, 다음 코드를 가장 많이 사용함
+        <!DOCTYPE html>
+            <html lang="ko">
+            <head>
+                <meta charset="UTF-8" />
+                <style>
+                .box {
+                    width: 100px;
+                    height: 100px;
+                    border: 2px solid #f2b441;
+                    border-radius: 10px;
+                }
+                .box1 {
+                    background: #f2d541;
+                    float: left;
+                }
+                .box2 {
+                    background: #5fb6d9;
+                    float: left;
+                }
+                .box3 {
+                    background: #d90404;
+                    float: left;
+                }
+                .box4 {
+                    width: 200px;
+                    height: 200px;
+                    background: #3b9cd9;
+                }
+                .clearfix::after {
+                    content: "";
+                    clear: both;
+                    display: block;
+                }
+                </style>
+            </head>
+            <body>
+                <div class="clearfix">     <--- float를 사용하는 경우 clearfix로 묶어 줘야함
+                <div class="box box1"></div>
+                <div class="box box2"></div>
+                <div class="box box3"></div>
+                </div>
+                <div class="box box4"></div>
+            </body>
+            </html>
+    
+    4. float 프로퍼티 특성
+     - float 프로퍼티로 설정한 요소는 기본적으로 display 특성을 block 특성으로 변경함
+      - display가 flex 등으로 설정되어 있는 경우 제외
+     - 하지만, block 특성을 가진 요소는 width를 설정하지 않을 경우, width가 100%가 되는데 반해서, float
+       프로퍼티로 설정한 요소는 요소의 크기만큼 width가 설정되어, display 프로퍼티를 마치 inline-block으로 선언해 준 것과 동일하게 동작
+     - float 설정 시 문서의 일반적인 흐름에 포함되지는 않지만(부유 또는 부유 객체), float가 적용된 요소에
+       content가 있을 경우 (또는 해당 요소의 너비와 높이가 지정되어 있을 경우), 해당 content의 너비와 높이
+       (또는 해당 요소의 너비와 높이)는 다음 요소의 content의 위치에 영향을 줌
+       absolute position 처럼 완벽히 부유한 요소와 다름
+
+-->

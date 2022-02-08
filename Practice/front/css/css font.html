@@ -1,0 +1,155 @@
+<!--
+    1. font-size 프로퍼티 (폰트 코드 참조 https://codesandbox.io/s/cssfont-1bi3m?file=/index.html)
+     - 문자 크기 설정
+        주요 값
+         - medium: 웹브라우저에서 정한 기본 글자 크기(디폴트)
+         - xx-small, x-small, small, large, x-large, xx-large: medium 에 대한 상대적인 크기
+         - smaller, larger: 부모 요소의 글자 크기에 대한 상대적인 글자 크기
+         - length, px, %, em, rem 등의 CSS단위를 사용한 글자 크기 설정(rem 많이 씀)
+    
+    2. font-family 프로퍼티
+     - 문자 폰트 설정
+        일반적으로 font-family에 여러 폰트를 설정하는 경우가 많음
+        font-family: 첫번째 폰트, 두번째 폰트, 세번째 폰트...;
+
+        - 폰트는 웹페이지를 보는 각 사용자 PC에 해당 폰트가 설치가 되어 있어야 하기 때문에, font-family를 통해
+          설정된 맨 앞의 폰트를 먼저 찾고, 해당 폰트가 없으면 다음 폰트, 또 해당 폰트가 없으면 그 다음 폰트 순으로 설정 시도
+
+        - 일반적으로 세 가지 정도 폰트를 설정하고, 마지막 폰트는 어느 PC에나 있을 법한 generic-family 폰트 시리즈를 설정
+            generic-family 시리즈 폰트 종류 이름은 다음과 같음
+
+            <font style="font-size:20px; font-family:serif"> 내용 </font>
+            <font style="font-size:20px; font-family:sans-serif"> 내용 </font>
+            <font style="font-size:20px; font-family:monospace"> 내용 </font>
+            <font style="font-size:20px; font-family:cursive"> 내용 </font>
+            <font style="font-size:20px; font-family:fantasy"> 내용 </font>
+    
+    3. 웹 폰트 사용법
+     - 폰트는 각 사용자 PC에 해당 폰트가 설치되어 있어야, 해당 폰트로 웹페이지에 표시됨
+     - 웹 폰트를 사용하면, 각 사용자 PC에 해당 폰트가 설치되어 있지 않아도, 웹브라우저에서 해당 폰트를 다운로드 받아서, 웹페이지가 표시됨
+        웹 폰트는 pc에 설치되는 폰트 파일보다 경량화된 형태임
+        - 웹폰트는 다운로드를 받아야 하므로 각 사용자 PC에 설치되어 있는 폰트를 사용하는 것보다는 느릴 수 있음
+            하지만, 갈수록 CDN 서버 성능이 좋아지고 있고, 모든 사용자에게 동일한 사용자 경험을 제공하므로, 꼭 필요한 경우는 사용해도 괜찮음
+
+            적용 예:
+            다음 링크로 가서 Select this style 버튼을 누른 후 , 오른쪽 탭 selected family 에서 복사()
+            1. link 태그 복사 
+            2. font-family 설정에서 폰트 이름 확인
+            3. 작성할 html 페이지에 head에 복사한 link 태그를 넣은 후, font-family 이름으로 폰트 설정
+
+            <!DOCTYPE html>
+                <html lang="ko">
+                <head>
+                    <meta charset="UTF-8" />
+                    <link
+                    href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+                    rel="stylesheet"
+                    />
+                    <style>
+                    .font-black-han-sans {
+                        font-family: "Black Han Sans", sans-serif;
+                    }
+                    </style>
+                </head>
+                <body>
+                    <p>테스트</p>
+                    <p class="font-black-han-sans">테스트</p>
+                </body>
+                </html>
+
+    4. font-style 프로퍼티
+     - 글자 모양 설정
+        normal: 보통 글자 모양
+        italic: 기울임 글자 모양
+        oblique: 기울임 글자 모양
+
+    5. font-weight 프로퍼티
+     - 글자 굵기 설정
+        - number: 100, 300, 400...900(숫자로 굵기를 미세하게 조정 가능, 폰트에서 지원해줘야 함)
+        - normal: 보통 굵기, 숫자 400과 같음
+        - bold: 굵은 굵기, 숫자 700과 같음
+        - bolder: 상속된 값(font-weight 미설정시의 굵기 값)보다 굵은 굵기
+        - lighter: 상속된 값(font-weight 미설정시의 굵기 값)보다 얇은 굵기
+
+    6. font-variant 프로퍼티
+     - 소문자를 소문자 크기의 대문자로 바꾸는 설정
+        normal: 소문자를 그대로 표시
+        small-caps: 소문자를 소문자 크기의 대문자로 바꾸기
+
+    7. line-height 프로퍼티
+     - 라인 높이 설정
+        normal: 웹브라우저에서 정한 기본값, 보통 1.2
+        length: px, %, em, rem 등의 CSS단위를 사용한 라인 높이 설정
+        number: 글자 크기의 몇 배인지로 라인 높이 설정
+    
+    8. font 단축 프로퍼티
+     font: font-style(옵션) font-variant(옵션) font-weight(옵션) font-size(필수) line-height(옵션) font-family(필수)
+     예: font: 1.2em "Fira Sans", sans-serif;
+        <!DOCTYPE html>
+        <html lang="ko">
+        <head>
+            <meta charset="UTF-8" />
+        </head>
+        <body>
+            <p>테스트</p>
+            <p style="line-height: normal;">normal 테스트</p>
+            <p style="font: italic small-caps lighter 16px/1.5 sans-serif;">
+            50% line configuration: 기본기를 잘 다지면, 새로운 프로그래밍 기술이
+            나와도 빠르게 익히고, 보다 깊은 부분까지 적용할 수 있습니다. 처음에 시간은
+            다소 걸릴 수 있지만, 이후에는 새로운 기술을 빠르게 익힐 수 있습니다.
+            </p>
+        </body>
+        </html>
+    
+    9. letter-spacing, word-spacing 프로퍼티
+     - 글자 사이 간격은 letter-spacing, 단어 사이 간격은 word-spacing으로 설정
+     - 보통 px CSS 단위를 사용하여 설정, 설정 값을 키우면 키울 수록 간격이 넓어지고, 음수도 가능
+
+    10. text-align 프로퍼티
+     - 글자 수평 정렬 설정
+        left: 왼쪽 정렬
+        right: 오른쪽 정렬
+        center: 가운데 정렬
+        justify: 양쪽 정렬
+
+    11. text-decoration 프로퍼티
+     - 글자에 선을 넣는 설정
+        none: 선을 만들지 않음
+        line-through: 글자 중간에 선을 만듬
+        overline: 글자 위에 선을 만듬
+        underline: 글자 아래에 선을 만듬
+    
+    12. white-space 프로퍼티
+     - 글자에 들어 있는 스페이스, 탭, 줄바꿈, 자동 줄바꿈 설정
+     프로퍼티 값 / 스페이스와 탭 / 줄바꿈 / 자동 줄바꿈
+     normal / 병합 / 병합 / O
+     nowrap / 병합 / 병합 / O
+     pre / 보존 / 보존/ X
+     pre-wrap / 보존 / 보존 / O
+     pre-line / 병합 / 보존 /  O
+
+    13. text-overflow 프로퍼티
+     - 문자열이 넘칠 경우(부모 영역을 벗어날 경우)에 자동 줄바꿈이 되지 않은 문자열 처리 설정,
+       다음 조건이 설정되있는 상태에서 설정 가능
+       1. width 프로퍼티 설정
+       2. white-space:nowrap 설정
+       3. overflow 프로퍼티가 visible 이외의 값 설정
+
+     - text-overflow 프로퍼티 값
+        clip: 텍스트를 잘라냄
+        ellipsis: 텍스트가 잘렸다는 것을 말줄임표(...)로 표시
+         이 외의 string 등의 프로퍼티 값은 호환성이 떨어지므로 사용하지 않음
+
+        <head>
+            <meta charset="UTF-8" />
+            <style>
+            .cut {
+                width: 200px; /* width 설정 필요 */
+                white-space: nowrap; /* 자동 줄바꿈 방지 설정 */
+                overflow: hidden; /* "visible" 외의 값으로 설정 */
+                text-overflow: ellipsis;
+            }
+            </style>
+        </head>
+        
+-->

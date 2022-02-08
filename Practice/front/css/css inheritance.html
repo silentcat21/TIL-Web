@@ -1,0 +1,85 @@
+<!--
+    상속과 CSS 우선순위
+     - 요소 간에는 부모와 자식 관계가 있고, 상속은 부모 요소의 프로퍼티 값을 자식 요소가 물려 받는 것을 의미함
+     - 생산성을 높일 수 있는 기능이지만, 실제 코드 작성시에는 복잡한 상속관계로 복잡도가 올라갈 수 있음(CSS우선 순위 확인 필요)
+
+    1. 상속
+     - 요소 간에는 부모와 자식관계가 있고, 상속은 부모 요소의 프로퍼티 값을 자식 요소가 물려받는 것을 의미함
+
+    코드로 확인하기
+     - p태그의 color 프로퍼티 값은 span 태그에도 적용됨(상속)
+     - h1 태그의 border 프로퍼티 값은 span 태그에 작용되지 않음
+        span 태그에 적용되었다면, 'span 태그를' 왼쪽/오른쪽에도 빨간 선이 있어야 함
+    
+    주요 프로퍼티별 상속 여부 정리
+     - 프로퍼티 별로, 상속되는 프로퍼티와 상속이 안되는 프로퍼티가 존재함(태그별로도 프로퍼티 상속이 안되는 태그도 존재)(https://www.w3.org/TR/CSS21/propidx.html)공식 정보
+     - 상속 가능: text-align, line-height, color, font, visibility, opacity
+     - 상속 불가: width, height, margin, padding, border, display, box-sizing, background, vertical-align, position(top, right, bottom, left
+                z-index, overflow, float)
+
+    강제 상속 설정(inherit)
+     - 부모의 프로퍼티 중 상속되지 않는 프로퍼티 값을 상속하고 싶을 때에는, 자식 요소에 해당 프로퍼티를 inherit으로 설정하면 됨
+        h1 {
+        border: 1px solid OrangeRed;
+        }
+        span {
+            border: inherit;
+        }
+    
+    2. CSS 우선 순위와 Cascading
+     - 다양한 CSS 프로퍼티 적용과 상속으로 인해, 특정 요소에 어떤 프로퍼티 값이 적용될지를 결정해야 함
+     - 이를 위해 각 프로퍼티 설정 형태에 따른 우선 순위를 정해놓고, 이에 기반해서 특정 요소에 적용될 프로퍼티값을 정함
+        이를 캐스케이딩(Cascading Order)라고도 함
+    
+    2.1 Cascading 기본 규칙
+     - 중요도: CSS를 어디에 선언했는지에 따라 우선 순위가 달라짐
+      1. head 태그 안의 style 요소
+      2. head 태그 안의 style 태그 안의 @import
+      3. <link>로 연결된 CSS 파일
+      4. <link>로 연결된 CSS파일 안의 @import문
+
+       명시도: 대상을 명확하게 지정할 수록 우선순위가 높아짐
+       선언순서: HTML 문서에서 뒤에 나오는 CSS가 우선순위가 높음
+
+    2.2 CSS 우선순위(명시도 계산) 기본 규칙
+     # 중요도, 선언 순서보다 명시도가 주로 우선순위에 많이 영향을 미치며, 계산 방식을 가볍게는 알고 있어야 함
+
+      1. HTML 문서에서 뒤에 나오는 CSS가 우선순위가 높음
+      2. 기본 우선순위(높은 순으로 정렬, 우선순위 점수)
+        - 프로퍼티 값 뒤에 !important를 적은 경우(우선순위 점수: 무한대)
+            .yellow{ background-color: yellow; !important}
+        - 태그 안에 속성으로 적은 style 에 의해 설정된 프로퍼티(우선순위 점수: 1000점)
+            <p style='text-align:center'>스타일</p>
+        - id로 선택한 CSS Selector에서 적용된 프로퍼티(우선순위 점수: 100점)
+            #dave{ color: blue; }
+        - class, html속성(attribute), 수도 클래스(pseudo class, :link 등)로 선택한 CSS selector에서 적용된 프로퍼티(우선순위 점수: 10점)
+            .dave{ color: green; }
+            [title="Dave"]{ color: blue; }
+            :link{ color: red; }
+        - 태그 또는 가상 요소 셀렉터(::first-letter, ::first-line, ::after, ::before, ::selection 등)로 선택한 CSS selector에서 적용된 프로퍼티(우선순위 점수: 1점)
+            h1{ color: red; }
+        - 전체(*)로 선택한 CSS selector에서 적용된 프로퍼티(우선순위:0점)
+            *{ margin: 0; }
+        
+        간단하게 !important > inline style > id > class > tag
+        !important, 태그 안에 적은 style 은 현업에서는 사용을 제한(복잡한 코드 상에서, 복잡도를 더 높일 수 있기 때문)
+
+    2.3 CSS 명시도 계산 규칙
+     - CSS 우선순위를 계산하는 기법(위에서 언급한 우선 순위 점수와 동일한 맥락이지만, 표시 방법이 다름)
+        쉼표로 구분된 4자리로 표시 0,0,0,0
+
+    CSS 우선 순위 점수에 따라 다음과 같이 작성
+     - 우선 순위 점수에 따라 태그 안에 적은 style이라면 첫 번째 자리 숫자에 1을 더함(예: 1,0,0,0)
+        보통 style이나 important는 명시도로 계산하지 않고, 직관적으로 확인하는 편임
+     - CSS selector 안에 id 갯수에 따라 두 번째 자리 숫자를 갯수만큼 더함(예:0,2,0,0 id가 두 개 들어간 경우)
+     - CSS selector 안에 class 등의 갯수에 따라 세 번째 자리 숫자를 갯수만큼 더함(예:0,0,2,0 class가 두 개 들어간 경우)
+     - CSS selector 안에 태그 등의 갯수에 따라 네 번째 자리 숫자를 갯수만큼 더함(예:0,0,0,2 태그가 두 개 들어간 경우)
+
+     연습
+     1번) h1.dave.funcoding#lee
+     2번) div > p
+     3번) ul#dev_class.begin a:link
+     4번) div a:visited::before
+
+     명시도 계산 사이트(https://specificity.keegan.st/)
+-->

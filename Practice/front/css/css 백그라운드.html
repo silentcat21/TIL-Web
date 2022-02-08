@@ -18,5 +18,68 @@
         </body>
         </html>
     
+    2. background-repeat 프로퍼티
+     - 배경 이미지가 요소 사이즈보다 작을 때, 반복해서 해당 사이즈를 채울 것인지를 설정
+        프로퍼티 값
+         - repeat: 요소의 배경 영역을 채울 때 까지 이미지 반복, 이미지가 넘치면 짜름(디폴트)
+         - space: 요소가 짤리지 않을 만큼만 이미지 반복, 처음과 마지막 반복 이미지는 요소의 양쪽 끝에 고정 후, 각
+            이미지 사이의 남은 여백을 고르게 분배. 이미지가 짤리는 경우는 이미지 크기가 요소 사이즈보다 클 경우임
+         - round: 요소 사이즈가 늘어나면, 그 때 반복해서 이미지를 채우고, 이미지가 짤리지 않도록, 전체 반복 이미지 사이즈도 재조정
+         - no-repeat: 이미지를 반복하지 않음. 반복하지 않은 이미지의 위치는 background-position CSS프로퍼티로 설정 가능
+
+         반복 세부 설정
+            - repeat-x (가로로만 이미지 반복) 두 개의 값으로 설정시(repeat no-repeat)
+            - repeat-y (세로로만 이미지 반복) 두 개의 값으로 설정시(no-repeat repeat)
+            - repeat(가로, 세로 모두 반복) 두 개의 값으로 설정시(repeat repeat)
+            - space 두 개의 값일 경우(space space)
+            - (가로, 세로 설정으로) space round, round no-repeat 등 세부 설정 가능
+        
+         복수의 이미지 설정 가능
+            - 먼저 설정된 이미지가 전면(앞에) 나옴, (따라서, repeat 설정시, 먼저 설정된 이미지로 덮일 수 있음)
     
+    3. background-size 프로퍼티
+     - 배경 이미지가 요소 사이즈보다 작을 때, 반복해서 해당 사이즈를 채울 것인지를 결정
+        - auto: 이미지 크기 유지(기본값)
+        - length: 값을 두 개 넣으면 첫번째 값이 가로 크기, 두 번째 값이 세로 크기, 값을 한 개 넣으면 가로 크기로 설정되며,
+            이 때 세로 크기는 원본 이미지의 가로 세로 비율에 맞게 자동 설정, px, % 등의 값으로 설정 가능
+        - cover: 요소 사이즈를 다 채울 수 있게 이미지를 확대 또는 축소, 가로 세로 비율 유지
+        - contain: 요소 사이즈를 벗어나지 않는 최대 크기로 이미지를 확대 또는 축소, 가로 세로 비율 유지
+        참고 사이트(https://cssreference.io/property/background-size/)
+    
+     - 복수 이미지 설정시, background-size 는 컴마(,)로 각 이미지 사이즈 설정 가능
+
+    4. background-attachment 프로퍼티
+     -브라우저를 스크롤하면, 배경 이미지는 스크롤되어, 안보여질 수 있음. 스크롤이 되더라도 배경 이미지는 고정되도록 하려면
+      background-attachment: fixed;를 설정 하면 됨(디폴트 값음 스크롤 되는 것임)
+    
+    5. background-position 프로퍼티
+     - background-image 는 디폴트로 좌측 상단에 이미지 위치
+     - background-position 으로 좌표(x,y)를 지정할 수 있음
+
+     주요 프로퍼티 값
+      - 두 값으로 설정 가능, 한가지 값으로 설정할 경우, 나머지 값은 center
+        left top: 왼쪽 상단
+        left center: 왼쪽 중앙
+        left bottom: 왼쪽 맨 아래
+        right top: 오른쪽 상단
+        right center: 오른쪽 중앙
+        right bottom: 오른쪽 맨아래
+        center top: 가운데 상단
+        center center: 정 가운데
+        center bottom: 가운데 맨 아래
+        x y: %, px, em 등으로 위치 지정 가능, %의 경우, 0% 0% 는 좌측 상단, 100% 100%는 우측 하단
+    
+    6. background-color 프로퍼티
+     - CSS 색상 단위로 배경색 설정 가능
+        transparent: 투명 설정(디폴트)
+
+    7. background 단축 프로퍼티
+     - 다음 순서대로 다양한 background 프로퍼티를 한번에 설정 가능
+        background: color image repeat attachment position
+        div {
+            background: yello url("image.png") no-repeat fixed center;
+        }
+    
+    
+
 -->

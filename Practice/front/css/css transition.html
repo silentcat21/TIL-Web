@@ -1,0 +1,61 @@
+<!--
+    CSS transition
+     - CSS 프로퍼티 값 변경시, 값 변화가 일정 시간에 걸쳐 일어나도록 해서, 일종의 애니메이션 효과를 주는 기능
+      # 인터넷 익스플로러만 확인하면 됨
+
+    1. 주요 CSS transition 프로퍼티
+     - transition-property: 트랜지션 대상이 되는 CSS 프로퍼티 지정(디폴트:all)
+     - transition-duration: 트랜지션이 일어나는 일정 시간을 초(s) 또는 밀리 초(ms)로 지정(디폴트: 0s)
+     - transition-timing-function: 특별한 함수를 통해 시간별 트랜지션 속도 지정(디폴트:ease)
+     - transition-delay: 언제 트랜지션을 시작할지를 초 또는 밀리 초로 지정
+     - transition: 모든 트랜지션 프로퍼티를 한 번에 지정하는 단축 프로퍼티
+    
+    2. transition-property 와 transition-duration
+     - transition-property 프로퍼티: 트랜지션 대상이 되는 CSS 프로퍼티명을 지정(디폴트값:all 이며, 여러 프로퍼티명을 지정할 경우, 쉼표(,)로 구분)
+     - transition-duration 프로퍼티: 트랜지션이 일어나는 일정 시간을 초 또는 밀리 초로 지정
+      # transition-property에서 설정된 프로퍼티 별로 transition-duration 값을 설정할 수 있음
+
+      설정 예1: opacity(투명도)변화를 3초 동안
+      div{
+          transition-property: opacity;
+          transition-duration: 3s;
+      }
+      설정 예2: opacity 3초, width 변화를 2초 동안
+      div{
+          transition-property: opacity, width;
+          transition-duration: 3s 2s;
+      }
+
+    3. transition-timing-function
+     - 기본적으로 cubic-bezier() 함수를 이해할 필요가 있음
+     - cubic-bezier()은 bezier curves(베지어 곡선)이라는 부드러운 곡선을 정의하는 함수로 그래픽에서 많이 사용 됨
+     - p0, p1, p2, p3와 같이 네 개의 값을 기반으로 표현되는 곡선, 각 값은 0 ~ 1 사이의 값
+     참고(https://cubic-bezier.com/#.17,.67,.83,.67)
+
+     -주요 transition-timing-function 프로퍼티 값
+        디폴트 값은 ease
+        ease: 느리게 시작, 점점 빨라지다가, 다시 느려지며 종료
+        linear: 시작부터 종료까지 동일한 속도로 진행
+        ease-in: 느리게 시작, 일정 속도 후에는 동일 속도로 진행
+        ease-out: 일정 속도로 진행 후, 점점 느려지며 종료
+        ease-in-out: 느리게 시작(속도가 빨라지는 시간이 ease보다 김), 점점 빨라지다가, 다시 느려지며 종료
+        step-start: 시작하자마자 바로 끝
+        step-end: 일정 시간 후 바로 끝
+        step(nm start|end): n단계로 나누어서 변화시킴
+        cubic-bezier(n,n,n,n): bezier curves(베지어 곡선)이라는 부드러운 곡선, n은 0 ~ 1 의 값 참고(https://dbaron.org/css/timing-function-graphs)
+
+        예시(https://codesandbox.io/s/csstransition-r6bpq?file=/index.html)
+
+    4. transition-delay
+     - 언제 트랜지션을 시작할지를 초 또는 밀리 초로 지정
+
+    5. trasition 단축 프로퍼티
+     - 다양한 transition 프로퍼티를 한 번에 설정
+      transition: property duration function delay
+      
+      설정 예:
+      transition: margin 2s;
+      transition: margin 2s 1s;
+      transition: margin 2s ease-in 1s;
+      
+-->

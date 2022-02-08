@@ -1,0 +1,115 @@
+<!--
+    CSS animation
+     - transition 과 유사하게, 요소에 적용되는 CSS 스타일을 다른 CSS스타일로 부드럽게 전환 시켜줌
+
+    transition 과 animation
+     - transition은 변경되어야할 스타일만 지정하지만, animation은 중간에 변경되는 스타일을 세밀하게 지정할 수 있음
+     - 애니메이션은 애니메이션을 나타내는 CSS 스타일과, 중간 상태를 나타내는 키프레임(@keyframes)로 이루어짐
+      # 자바스크립트 기반 애니메이션보다, 렌더링 성능이 좋음(브라우저에서 안보이는 요소를 알 수 있어서,
+        애니메이션 업데이트 주기를 최적화하기 때문에, 이를 알기 어려운 자바스크립트보다 성능이 좋음)
+     - 하지만, 케이스별로 CSS또는 javascript를 쓰는 편이 좋음
+      가벼운 효과는 CSS
+      세밀한 제어가 필요한 애니메이션은 javascript 애니메이션
+    
+    1. 주요 CSS animation 프로퍼티
+        animation-name: @keyframes 애니메이션 이름 지정
+        animation-duration: 한 싸이클의 애니메이션에 소요되는 시간을 초 또는 밀리초로 지정
+        animation-timing-function: transition과 같이 애니메이션 속도 설정을 위한 함수 지정(디폴트 ease)
+        animation-delay: 애니메이션이 시작 전, 대기 시간을 초 또는 밀리 초로 지정
+        animation-iteration-count: 애니메이션 재생 횟수 지정 (디폴트 1)
+        animation-direction: 애니메이션 종료 후 반복될 때 진행 방향 지정
+        animation-fill-mode: 애니메이션 종료 또는 대기 시의 요소 스타일 지정
+        animation-play-state: 애니메이션 재생 상태 지정
+        animation: animation 단축 프로퍼티
+
+    2. keyframes 문법
+     - from 또는 0%에 설정한 스타일에서 출발해서, to 또는 100%까지, 또 그 중간 시점을 %로 표기하여, 각 시점에 설정한 스타일로 변경되는 스타일을 설정할 수 있음
+
+     1. @keyframes 에 이름 정하기(예: ball)
+        @keyframes ball {
+
+        }
+     2. keyframes 에 원하는 시점(프레임)에 스타일 지정하기
+      - 0% 또는 from: 시작 프레임
+      - 100% 또는 to: 마지막 프레임
+      - 0% ~ 100% 사이: 원하는 시점 프레임
+      @keyframes ball {
+            0% {
+                top: 0;
+            }
+            50% {
+                top: 100px;
+            }
+            100% {
+                top:300px;
+            }
+        }
+     3. 애니메이션 요소 설정하기
+      - animation-name 에 정의한 @keyframes 이름 넣기
+      - animation-duration에 한 싸이클의 애니메이션에 소요되는 시간을 초 또는 밀리 초로 지정
+      - animation-iteration-count 에 애니메이션 반복 횟수 넣기(infinite 는 무한 반복)
+       .box1 {
+           position: absolute;
+           width: 100px;
+           height: 100px;
+           border: 2px solid #F2B441;
+           background: #F2D541;
+           border-radius: 10px;
+           animation-name: ball;
+           animation-duration: 5s;
+           animation-iteration-count: infinite;
+       }
+       여러개의 keyframes 설정 가능
+       animation-name: ball, fadeout; 처럼
+
+    3. 주요 CSS animation 프로퍼티 값
+     - animation-timing-function
+       transition-timing-function 과 동일
+       -디폴트 값은 ease
+       -ease: 느리게 시작, 점점 빨라지다가, 다시 느려지며 종료
+       -linear: 시작부터 종료까지 동일한 속도로 진행
+       -ease-in: 느리게 시작, 일정 속도 후에는 동일 속도로 진행
+       -ease-out: 일정 속도로 진행 후, 점점 느려지며 종료
+       -ease-in-out: 느리게 시작, 점점빨라지다가 ,다시 느려지며 종료
+       -step-start: 시작하자마자 바로 끝
+       -step-end: 일정 시간 후 바로 끝
+       -step(n, start|end): n 단계로 나누어서 변화시킴
+       -cubic-bezier(n,n,n,n): bezier curves(베지어 곡선)이라는 부드러운 곡선, n은 0~1의 값
+
+     - animation-duration, animation-delay 설정 가능
+     - animation-iteration-count 정수로 지정 가능, infinite 무한 반복 기능
+     - animation-direction
+       - normal: 0에서 100%방향으로
+       - reverse: 100%에서 0%방향으로
+       - alternate: 홀수 번 째는 normal, 짝수번 째는 reverse로 진행
+       - alternate-reverse: 홀수 번 째는 reverse, 짝수 번 째는 normal로 진행
+
+     - animation-fill-mode
+      #이해하기 힘듬
+       처음 스타일을 처음 요소에 적용된 스타일이라 정의하면, 다음과 같이 프로퍼티 값과 각 값에 따른 애니메이션 변화를 표현할 수 있음
+        - none: 처음 스타일 > 0% > 100% > 처음 스타일
+        - forwards: 처음 스타일 > 0% > 100% > 100%
+        - backwards: 0% > 0% > 100% > 처음 스타일
+        - both: 0% > 0% > 100% > 100%
+        (https://codesandbox.io/s/cssanimation-zgc3g?file=/index3.html)
+    
+     - animation-play-state
+      -주로 javascript 와 함께 사용해서, 이벤트에 따라 해당 프로퍼티 값을 변경
+       pause: 중지 상태
+       running: 실행상태(디폴트 값)
+
+     - animation 단축 프로퍼티
+      - 다양한 animation 프로퍼티들을 한 번에 설정하는 단축 프로퍼티
+       animation: name duration timing-function delay iteration-count direction fill-mode play-state
+
+       설정 예:
+        - name, duration, timing-function, delay, iteration-count, direction, fill-mode, play-state
+        animation: ball 2s ease-in 4s infinite reverse both paused;
+
+        - name, duration, timing-function delay
+        animation: ball 2s linear 1s;
+
+        - name, duration
+        animation: ball 2s;
+
+-->

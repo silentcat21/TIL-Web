@@ -1,0 +1,33 @@
+<!--
+    CSS transform
+     - transform 은 요소의 회전, 크기 조절, 기울이기, 이동 효과를 부여하는 함수(function)를 제공한다.
+     - 애니메이션 등의 키프레임 기반 설정은 제공하지 않으므로, 애니메이션 효과 필요시, CSS animation이나, transition과 함께 사용하면 됨
+
+    1. CSS transform 사용법
+     - CSS transform 은 요소의 회전, 크기 조절, 기울이기, 이동 효과를 부여하는 함수 (function)를 제공하며, 다음과 같은 형태로 설정 가능
+      transform: transform 함수;
+
+     - CSS transform 함수로 요소 이동 및 변형 시 다음과 같이 x,y,z로 요소 변형을 설정할 수 있음
+     - 주요 transform 함수
+        translate(x,y): 요소 위치를 가로로x 세로로y 만큼 이동, CSS 기본 단위(px, %, em, rem 등)
+        translateX(n): 요소 위치를 가로로 x만큼 이동, CSS 기본 단위
+        translateY(n): 요소 위치를 세로로 y만큼 이동, CSS 기본 단위
+        scale(x,y): 요소 크기를 가로로 x배, 세로로 y배 확대 또는 축소, 0 또는 양수(1보다 크면 확대, 0~ 1 사이면 축소)
+        scaleX(n): 요소 크기를 가로로 x배 확대 또는 축소, 0 또는 양수(1보다 크면 확대, 0~1 사이면 축소)
+        scaleY(n): 요소 크기를 가로로 y배 확대 또는 축소
+        skew(x-angle, y-angle): 요소를 가로로 x 각도 만큼, y각도 만큼 기울임, 각도 (단위 : deg)
+        skewX(x-angle): 요소를 가로로 x만큼 기울임
+        skewY(y-angle): 요소를 세로로 y만큼 기울임
+        rotate(angle): 요소를 주어진 각도(angle) 만큼 회전 시킴
+        참고(https://codesandbox.io/s/csstransform-985ps?file=/index.html)
+
+    transform-origin 프로퍼티
+     - scale(), rotate(), translate(), skew() 동작은, 기본적으로 해당 요소의 중심을 기준으로 동작
+     - 요소의 기준점을 변경하려면 transform-origin 프로퍼티를 사용하면 됨
+     참고(https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
+
+     사용법
+      transform-origin : x축 y축 z축
+      프로퍼티 값은 x축, y축, z축 모두 left, center, right, length, % 등이 가능함
+
+-->
