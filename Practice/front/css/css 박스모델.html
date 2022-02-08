@@ -1,0 +1,50 @@
+<!--
+
+Box Model 프로퍼티
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      div {
+        /* 배경색 지정: content 와 padding 영역에 적용 */
+        background-color: orange;
+        /* 디폴트로 content 영역 너비, box-sizing 프로퍼티를 통해 변경 가능(추후 설명) */
+        width: 300px;
+        /* 패딩 영역 두께 */
+        padding: 20px;
+        /* 테두리: 두께 형태 색상 (테두리는 색상도 지정 가능) */
+        border: 10px solid yellow;
+        /* 마진 영역 두께 */
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>잔재미코딩을 통해, 퀄러티 있는 IT 컨텐츠를 제공합니다.</div>
+  </body>
+</html>
+
+2.4 border 프로퍼티
+  1. border-style: 선 스타일 설정, 참고(https://developer.mozilla.org/ko/docs/Web/CSS/border-style)
+  2. border-width: 선 굵기 설정, 다음과 같이 각 위치별 설정이 가능, 1px와 같이 설정하거나, thin, mediup, thick 의 키워드로도 설정 가능
+   참고(https://developer.mozilla.org/ko/docs/Web/CSS/border-bottom-width)
+   border-width는 border-style과 함께 설정되어야 사용 가능
+  3. border-color: 선 색상 지정
+    border-color도 border-style과 함께 설정되어야 사용 가능
+  4. border-radius: 테두리 모서리를 둥글게 표시 참고(https://developer.mozilla.org/ko/docs/Web/CSS/border-radius)
+    radius 테스트 사이트(https://border-radius.com/)
+  5. border 단축 프로퍼티
+    border-width, border-style, border-color 순으로 한번에 세 가지 프로퍼티를 설정할 수 있는 단축 프로퍼티
+
+참고: CSS 스타일링과 box-sizing
+ - css 적용시, 모든 block 요소는 box-sizing을 border-box로 설정하는 것이 일반적임
+ - box-sizing은 디폴트로 상속이 되지 않고, HTML 요소의 디폴트 box-sizing은 content-box이므로, 전체 요소에 box-sizing을 border-box로 설정하기 위해 다음과 같은 CSS 설정을 많이 사용함
+
+ *,
+ *::before,
+ *::after {
+     box-sizing: border-box;
+ }
+
+-->
