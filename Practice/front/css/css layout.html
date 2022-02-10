@@ -1,0 +1,123 @@
+<!--
+   CSS flexbox
+    - 웹페이지 구성요소를 배치하기 위해, css를 사용함, 기존에는 float/position 기반 레이아웃 설정을 하였으나,
+      최근에는 CSS3의 프로퍼티인 flexbox를 점차적으로 많이 사용하는 편임.
+      
+    1. 수평 정렬 방법과 flexbox(Flexible Box)
+     - 뷰포트나 요소 사이즈가 불명확하거나, 동적으로 변할 때에도 요소를 적절히 배치할 수 있는 기능을 제공
+     - 기존에는 float와 position 프로퍼티를 기반으로 레이아웃 작업을 했음
+     - float와 position은 엄밀히는 레이아웃을 위한 프로퍼티가 아니어서, 표현이 불가능한 레이아웃이 있기도하고, 구현이 복잡하였음
+     - CSS3에서는 레이아웃을 위해 flexbox 프로퍼티를 제공하였으나 IE가 완벽한 지원을 해주지 않아서 사용하기 어려웠음
+     
+    # 현업에서 웹브라우저 호환성에 매우 신경을 쓰는 편이지만, 인터넷 익스플로러가 갈수록 점유율이 떨어지고, 최근 많은 개선이 이뤄지고 있으므로,
+      향후 프론트엔드 작업을 위해서는 flexbox를 먼저 배우는 편이 좋음
+
+    flexbox의 이해
+     - div.item은 디폴트로 display가 block 이므로, 수직으로 쌓입니다.(block 요소는 항상 새로운 라인에 표시됨. 즉 수직정렬임)
+
+    div.item 을 수평으로 정렬하려면?
+     1. item 클래스에 display를 inline-block으로 변경하면 됨(inline으로 변경하면, width/height 등을 가질 수 없음)
+       하지만, 이경우, 각 div.item 사이에 원치 않은 스페이스 한 칸이 들어가게 됨
+       따라서, 태그 사이에 스페이스/탭/줄바꿈등이 없도록 임의로 변경해야 함
+       (모든 코드를 이와 같이 작성하기는 무리가 있으며, 이외에도 font-size를 0px로 만드는 등 다양한 woalk around방법이 존재)
+     2. float를 left로 설정하면 수평으로 정렬됨
+      하지만, 이 경우 부모 태그인 div.container 안에 div.item 이 포함되지 않게 됨
+      이유: 자식 태그에 float가 적용되면, 부모 태그의 height를 인식하지 못해서, height가 0px가 됨
+      복습: float 설정 시 문서의 일반적인 흐름에 포함되지 않고, 해당 요소는 뜨게 되기 때문에, 부모 태그 입장에서는 자식 태그가 문서 내에 있지 않은 셈이 되기 때문
+     3. clearfix 를 사용하는 방법
+      float 설정 요소 뒤에 나오는 요소에 clear 프로퍼티를 both로 설정하면, 왼쪽/오른쪽 둘 다 float가 헤제되면서, float 설정 요소 다음 라인에 해당 요소가 표시됨.
+      이 경우, 기존의 div.container는 다음 라인에 표시되는 요소 앞까지 흐러내리게 되어( 즉 float로 설정된 요소의 높이까지 내려오게 됨),결과적으로 float로 설정된 요소를 감싸게 됨
+      단, clear 프로퍼티를 쓰려면, 다음에 나오는 요소가 있어야 하므로, 다음에 나오는 요소가 없어도, 사용할 수 있는 가상 요소 셀렉터(Pseudo-Element Selector)의 ::after 클래스 사용
+
+     4. flexbox 이용 방법
+      부모 요소에 display를 flex라고 선언해주면 끝
+
+    2. flexbox container 관련 프로퍼티
+     flexbox는
+     - 상위 부모 요소인 flex container 와,
+     - 하위 자식 요소인 flex item들로 구성됨
+     즉, flex item이 수평 정렬할 요소들이라고 하면, 해당 요소를 감싸고 있는 부모 요소로 flex container가 필수적임
+
+    2.1 flex container 관련 프로퍼티 요약
+     flex container와 flex item에 적용할 수 있는 프로퍼티가 분리되어 있음
+
+    flex container에 설정 가능한 프로퍼티
+     - display: flex container 정의
+     - flex-direction: flex item 들의 주 축(main-axis)방향 설정
+     - flex-wrap: flex-direction과 flex-wrap을 한 번에 설정할 수 있는 단축 프로퍼티
+     - justify-content: 주 축(main-axis)기반 정렬 방법 설정
+     - align-content: 교차 축(cross-axis)기반 정렬 방법 설정(2행 이상)
+     - align-items: 교차 축 기반 정렬 방법을 설정(각 행마다 적용)
+
+    2.2 display
+     - flex: block 특성의 flex container 정의 (flex container 간에 수직 정렬)
+     - inline-flex: inline 특성의 flex container 정의 (flex container 간에 수평 정렬)
+      # 부모 요소에 display를 위와 같이 설정하면, 자동으로 자식 요소들은 flex item이 됨
+
+    2.3 flex-direction
+     정렬 방법 설정
+     flex-direction 프로퍼티 값
+      - row: 좌에서 우로 수평 정렬
+      - row-reverse: 우에서 좌로 수평 정렬(오른쪽 수평 정렬)
+      - column: 위에서 아래로 수직 정렬
+      - column-reverse: 아래에서 위로 수직 정렬
+
+    팁: div 박스 내의 텍스트의 가운데 정렬
+     - 수평 가운데 정렬: text-align: center;
+     - 수직 가운데 정렬: line-height: height에서 설정한 높이값을 동일하게 써줌
+
+    2.4 flex-wrap
+     flex item 들을 1행 또는 복수의 행으로 배치하는 설정
+
+    주요 프로퍼티 값
+     - nowrap: flex item 들을 개행하지 않고, 한 행에 배치(디폴트)
+        flex item들의 너비 합이 flex container 너비 보다 큰 경우 flex item 들이 넘쳐서, flex container 밖에 표시될 수 있음.
+        이 때, flex container에 overflow: auto; 설정을 넣어주면, 넘치지 않고, flex container 안에 스크롤이 생김
+     - wrap: flex item들의 너비 합이 flex container 너비 보다 큰 경우, 복수의 행에 표시
+     - wrap-reverse: flex item들의 너비 합이 flex container 너비 보다 큰 경우, wrap과 동일하게 복수의 행에 표시되지만, 순서가 역 방향으로 표시됨
+
+    2.5 flex-flow
+     flex-direction과 flex-wrap 프로퍼티를 한 번에 쓸 수 있는 단축 프로퍼티
+      flex-flow: flex-direction flex-wrap;
+
+    2.6 justify-content
+     주 축(main-axis)기반 수평 정렬 방법 설정
+      1. .container 에 justify-content: flex-start; 넣기 : justify-content 디폴트 값이 flex-start이므로 변화없이 왼쪽부터 수평 정렬
+      2. justify-content 프로퍼티 값을 flex-end로 바꾸기: 오른쪽부터 수평 정렬
+      3. justify-content 프로퍼티 값을 center로 바꾸기: 가운데 수평 정렬
+      4. justify-content 프로퍼티 값을 space-between 으로 바꾸기: 좌우 끝에 flex item 배치 후, 내부 flex item은 균등 간격으로 정렬
+      5. justify-content 프로퍼티 값을 space-around로 바꾸기: flex container 내부에 flex item을 균등 간격으로 정렬
+
+    2.7 align-items 과 align-content
+     - align-items: 교차 축(cross-axis)기반 정렬 방법을 설정(각 행마다 적용)
+     - align-content: 교차 축(cross-axis)기반 정렬 방법을 설정(복수의 행을 하나의 그룹처럼 적용)
+      align-items 테스트
+       1. .container에 align-items: stretch 추가 하기: 디폴트 값이므로 변화 없음.
+          기본적으로 교차 축(cross-axis)을 채우기 위해 flex item 높이 미설정시 자동으로 늘어남
+       2. align-items 프로퍼티 값을 flex-start로 변경하기: flex item들은 flex-start 각 줄의 시작점에서 정렬되며,
+          flex item 높이 미설정시, 교차 축(cross-axis)을 채우기 위해 자동으로 늘어나지 않음을 확인 할 수 있음
+       3. 다음과 같이 각 div 요소에 각 css class 추가하기
+            각 css class는 각 아이템별 높이 값이 들어 있고, item1 class에만, 추가로 폰트 사이즈를 변경
+            flex-start는 각 줄의 시작점에서 정렬되므로, 각 행의 아이템들은 각 행의 시작점을 기준으로 정렬됨을 알 수 있음
+       4. align-items 프로퍼티 값을 flex-end로 변경하기: 각 줄의 끝점에서 부터 정렬(여기까지 해보면 flex-start와 flex-end의 차이를 이해할 수 있음)
+       5. align-items 프로퍼티 값을 center로 변경하기: 각 줄의 교차 축(cross-axis)의 가운데에서 정렬
+       6. align-items 프로퍼티 값을 baseline으로 변경하기: 각 줄의 문자 기준선에서 정렬(flex-start로 값을 변경해보면, 차이를 알 수 있음)
+
+      align-content 테스트
+       1. .container에 align-content: stretch; 추가하기: 디폴트 값이므로 변화 없음. 기본적으로 교차 축을 채우기 위해 flex item높이 미설정시 자동으로 나타남
+       2. align-content 프로퍼티 값을 flex-start로 변경하기: 복수의 행에 있는 flex item들이 flex-start 각 줄의 시작점에서부터 정렬되며
+          flex item 높이 미 설정시, 교차축을 채우기 위해 자동으로 늘어나지 않음을 확인할 수 있음
+       3. align-content 프로퍼티 값을 flex-end로 변경하기: 마지막 행의 끝점에서 부터 flex items들이 정렬(여기까지 해보면 align-items와 content의 차이를 알 수 있음)
+       4. align-content 프로퍼티 값을 center로 변경하기: 전체 container의 가운데에서 정렬
+
+        복습.
+        - 기존 가운데 정렬 팁: div 박스 내의 텍스트의 가운데 정렬
+        - 수평 가운데 정렬: text-align: center;
+        - 수직 가운데 정렬: line-height에서 설정한 높이값(height)을 동일하게 써줌
+        
+        - flexbox 활용 가운데 정렬 팁
+        - 수평 가운데 정렬: justify-content: center;
+        - 수직 가운데 정렬: align-content: center;
+       5. align-content 프로퍼티 값을 space-between 으로 변경하기: 첫 행과 마지막 행은 각각 첫 행의 시작점과 마지막 행의 끝점에 붙어! 있고 나머지는 균등 간격
+       6. align-content 프로퍼티 값을 space-around로 변경하기: 각 행이 모두 균등한 간격(앞 뒤 공백 있음)으로 정렬
+-->

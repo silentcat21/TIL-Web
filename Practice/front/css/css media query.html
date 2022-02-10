@@ -1,0 +1,140 @@
+<!--
+    CSS media query 와 반응형(responsive) 레이아웃
+
+    1. 반응형 웹
+     - 최근 웹사이트 기반의 서비스를 모바일 또는 태블릿 화면에서 접속하는 경우가 많음
+     - 기존에는 부트스트랩 이라는 프레임워크 기반으로 반응형 웹을 자동 구현하거나, 웹퍼블리셔가 관련 처리를 하는 경우가 많았음
+     - 하지만, 최근에는 웹퍼블리셔가 없고, UX 디자이너가 스케치등의 UI 디자인 툴로 작업한 결과물을 기반으로
+       개발자가 직접 반응형까지 고려하며 구현을 해야 하는 경우가 많아지고 있음
+     - 또한, 풀스택이 되어, 혼자서도 그럴듯한 웹서비스를 만드려면 반응형 처리를 반드시 해줘야 함
+
+    적응형 웹 VS 반응형 웹
+     - 적응형 웹: 사용자가 모바일 환경인지, PC환경인지에 따라 다른 페이지를 보여줌
+        예1: yes24.com 사이트를 모바일 환경에서 접속하면, 경우에 따라 자동으로 m.yes24.com을 보여주는 경우가 있음
+
+     - 반응형 웹: 동일한 웹페이지를 보여주되, 웹페이지를 보여주는 화면 사이즈에 따라, 다르게 보여줌
+
+    pixel 과 viewport
+     - pixel 이란 Picture Element 의 줄임말로, 화소라고 부름.
+     - 컴퓨터 디스플레이를 구성하는 최소 단위로, 각 픽셀에 색상을 표현해서, 디스플레이가 화면을 보여주는 것
+        예: 320px * 480px의 해상도를 가진 디스플레이는 153,600 픽셀을 가지고 디스플레이 화면을 구성함
+        따라서 높은 해상도를 가진 모바일 기기에서 작은 이미지가 더 작게 보일 수 있음
+
+    이러한 문제를 해결하기 위해, viewport 라는 개념이 도입됨
+     - viewport 는 화면상의 표시 영역을 의미하며, 스마트폰에서는 virtual viewport 를 대부분 980px으로 설정해서,
+       마치 화면 가로 너비가 980px인 상태로 웹페이지가 표시되도록 해놓았음
+
+     - 다만, 이 경우에도 화면 디스플레이 사이즈에 따라서 웹페이지가 매우 작게 보여서 가독성이 떨어질 수 있음
+        사용자가 보기편한 폰트 크기는 12 ~ 16px이지만, 다양한 크기를 가진 스마트폰의 virtual viewport를 980px로 해놓는다면,
+        웹페이지에 따라서는 폰트가 매우 작게 표시 될 수 있음
+
+    이를 해결할 수 있는 기능: meta viewport 설정
+     - 다음과 같이 viewport에 원하는 너비를 넣으면, 해당 너비에 맞게 웹브라우저가 웹페이지를 표시함
+     - 해당 태그가 없다면, 대부분의 스마트폰에서 디폴트로 설정해놓은 980px 에 맞게 웹페이지가 표시됨
+      <meta name="viewport" content="width=320">
+
+    다양한 디스플레이에 맞는 웹페이지 구현
+     - meta viewport에 width를 임의 숫자로 넣을 경우, 다양한 디스플레이 대응이 어려움
+        그래서, 각 기기에 알맞은 너비값을 가져올 수 있도록 함 (device-width)
+     - 다음과 같이 작성하면, 웹브라우저가 각 기기로부터 알맞은 너비값을 가져와서 viewport를 설정하고,
+       이에 따라 웹페이지가 다양한 디바이스에 알맞게 보여지도록 설정됨
+       <meta name="viewport" content="width=device-width">
+
+    각 기기의 알맞은 너비값은 디스플레이 해상도 너비가 아님
+     - PPI(Pixels Per Inch), 픽셀 밀도, 또는 화소 밀도란, 특정 공간에 얼마나 많은 화소가 있는지를 나타냄
+        예: 40ppi는 1인치에 40개의 픽셀이 있다는 뜻임
+     - 애플이 레티나 디스플레이의 iPhone을 선보였을 때, 인치당 픽셀을 두 배로 늘려서, 기존 보다 훨씬 선명한 화면을 구현하였음
+     - 이후에는, 동일한 사이즈의 이미지를 작성을 위해, 두 배의 픽셀 사이즈에서 작업을 해야 했음
+        40픽셀에 보여질 사이즈의 이미지를 만들기 위해서는 80픽셀로 이미지를 작업해야 함
+        즉, 픽셀이라는 단위가 모호해지기 시작함
+        이 때, 40픽셀에 보여질 이미지를 제작하기 위해, 80 픽셀로 이미지를 작업해야 하는 경우, 이 디스플레이의 pixel density(픽셀 밀도)200%으로 정의함
+        따라서, 일바적으로 device-width는 디스플레이 해상도 너비/pixel density로 계산되고, 이를 웹브라우저가 인식하여, meta viewport 태그에 적용한흔 것이라고 이해하면 됨
+        참고, 기기별 디스플레이 해상도와 픽셀 밀도(https://screensiz.es/phone)
+
+    viewport meta 태그
+     - 위에서 언급한 대로 viewport meta 태그를 사용해서, 스마트폰에서도 웹페이지를 적절한 크기로 표시할 수 있으므로,
+       반응형 웹페이지의 첫 출발은 viewport meta 태그를 설정하는 것임
+       <meta name="viewport" content="여러 프로퍼티 설정을 콤마(,)로 표시 가능">
+       가장 많이 사용되는 예-
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    주요 프로퍼티 (주로 width 와 initial-scale 만 위의 예와 같이 작성함)
+     - width: viewport 너비 (단위:px) / width=device-width
+     - height: viewport 높이 (단위:px) / width=device-height
+     - initial-scale: viewport 초기 배율(디폴트 값: 1.0) / initial-scale=1.0
+     - user-scale: 사용자가 웹페이즈 확대 축소 가능 여부(디폴트 값: yes) / user-scale=no
+     - maximum-scale: viewport 최대 배율(디폴트 값: 5.0 0~10범위 ) / maximum-scale=2.0
+     - minimum-scale: viewport 최소 배율(디폴트 값: 0.25 0~10범위) / minimum-scale=2.0
+
+    2. 레이아웃과 미디어 쿼리
+     레이아웃과 반응형 레이아웃
+      - 웹페이지에서 레이아웃(layout)이란, 각 페이지 구성 요소를 페이지 내에 효과적으로 배열하는 일을 의미
+      - HTML을 사용해서, 웹페이지의 각 구성 요소를 정의하고, CSS를 사용해서, 각 구성 요소를 효과적으로 배열함
+
+     반응형 레이아웃
+      - HTML5에서 정의된 Semantic tags 기반으로 일반적인 레이아웃 기반 반응형 레이아웃 예
+       - PC 상에서는 다음과 같이 배치
+       - 스마트폰 상에서는 표시할 수 있는 영역이 작기 때문에, 보통
+        - aside는 밑에 위치하고
+        - nav 영역은 javascript로 숨겼다가 보여주거나, 아이콘으로 대체하기도 함
+        - 이외에 각 영역의 글자, 아이콘, 이미지 등도 모바일 화면에 알맞게 재구성
+
+     미디어 쿼리
+      - CSS 미디어 쿼리를 사용해서, 반응형 레이아웃을 구현할 수 있음
+      - 미디어(media)는 장치(device)를 의미
+      - 미디어 쿼리란, 서로 다른 미디어 타입에 대응하기 위한 기능으로 이해
+        - 서로 다른 미디어 타입에 따라 각기 다른 스타일을 적용할 수 있는 기능
+      - CSS2 대비 CSS3의 가장 큰 추가 기능 중 하나가 반응형을 위한 미디어 쿼리
+      # 반응형 웹의 핵심 기능은 @media를 사용하는 것임
+
+    미디어 쿼리 기본 문법
+     @media media-type and (media-feature-rule) {
+         css 문법 등
+     }
+
+     - media-type (미디어 유형): 보통 all 또는 screen 사용
+        - all
+        - print(프린트 화면)
+        - screen(브라우저 화면)
+        - speech(음성)
+    
+     - media-feature-rule: media(미디어) 조건
+        - 이 중에서 min-width/max-width, orientation 정도가 많이 사용됨
+
+        width: viewport 너비(단위:px), 보통 min-width, max-width로 최소 너비/ 최대 너비로 많이 사용함
+        height: viewport 높이(단위:px)
+        device-width: 디바이스의 물리적 너비(단위:px)
+        device-height: 디바이스의 물리적 높이(단위:px)
+        orientation: 디바이스 방향(가로 방향:landscape, 세로 방향: portrait)
+        aspect-ratio: viewport의 가로세로 비
+
+     - 논리 연산자: and, not, only 를 붙여서 복잡한 조건을 만들 수 있음
+        and: 복수의 미디어 조건이 모두 참일 때 참
+        not: 미디어 조건이 거짓일 때 참
+        only: only는 복수의 미디어 쿼리가 참일 때만 스타일을 적용하는 경우에 구형 브라우저에서 잘못 처리되는 것을
+                막기 위해 사용. 예를 들어, only를 쓰지 않고 screen and(max-width: 300px) 와 같이 쓸 경우
+                구형 브라우저에서는 screen 까지만 읽고, 뒷 부분은 무시한 채 스타일을 적용할 수 있음.
+                따라서 구형 브라우저 지원을 위해 only screen and (max-width: 300px)와 같이 쓰면 좋음
+        컴마(,): 여러 미디어 조건을 컴마를 통해 나열할 수 있고, 이 때는 여러 조건 중 하나만 만족해도 전체가 참, 즉 or 처럼 동작
+
+        주요 사용 예
+         - 화면 너비가 1024px 이하인 경우 CSS 적용
+         @media (max-width: 1024px) {...}
+         - 화면 너비가 1024px 이하고, 브라우저 화면일 때만 CSS 적용
+         @media only screen and (max-width: 1024px) {...}
+         - 화면 너비가 1200px 이상이고, 브라우저 화면이고, 디바이스가 가로 방향일 때만 css 적용
+         @media only screen and (min-width: 1200px) and (orientation: landscape) {...}
+         - 조건 1: 화면 너비가 680px 이상이거나, 조건 2: 브라우저 화면이고, 디바이스가 세로방향일 때 중 한가지 조건 이상만 만족해도CSS 적용
+         @media (min-width:680px) , screen and (orientation: portrait) {...}
+         - 모든 화면에서 디바이스가 세로 방향이 아닐 때 CSS 적용
+         @media not all and (orientation: portrait) {...}
+         참고(https://codesandbox.io/s/cssmedia-v7qd3?file=/index.html)
+
+    참고 해상도
+     - 매우 다양한 디바이스가 있으므로, 해상도는 매우 다양하고, 공식적인 표준은 존재하지 않으며, 심지어 추세가 있으므로 참고로만 활용
+      320~480 스마트폰
+      481~768 태블릿
+      769~1024 저해상도 노트북
+      1025~1200 데스크탑
+      1200 ~ 고해상도 데스크탑 및 TV
+-->
