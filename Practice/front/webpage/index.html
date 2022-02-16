@@ -56,11 +56,16 @@
     <title>연습장</title>
 </head>
 <body>
+    <!-- CSS 작명 규칙 (BEM: Block Element Modifier)
+         head-container-blue 이런 순서)
+        - :단어와 단어 사이에는 하이픈
+        _(언더바) : ~의 하위요소 (예: head-container_head-brand) 대문자 사용 잘 안함
+        -- : ~의 상태를 나타낼 때 (예: head-container_head-brand--nolink)-->
     <header>
         <div class="inner">
             <div class="head-container">
-                <div class="head-brand">연습용 코딩</div>
-                <div class="head-blog">연습용 코딩 모음</div>
+                <div class="head-brand"><a href="https://www.fun-coding.org">잔재미코딩</a></div>
+                <div class="head-blog"><a href="https://www.fun-coding.org/daveblog.html">잔재미코딩 블로그 모음</a></div>
             </div>
         </div>
     </header>

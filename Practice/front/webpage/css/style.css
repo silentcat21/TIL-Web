@@ -8,6 +8,32 @@ body {
     font-family: "Spoqa Han Sans Neo", "Sans-serif";
 }
 
+a {
+    all: unset;
+}
+/* 가상 프로퍼티는 전체 리셋을 해도 적용되지 않아서 재설정 해줘야함*/
+
+a:link {
+    text-decoration: none;
+    color: #3f464d;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #3f464d;
+}
+
+a:active {
+    text-decoration: none;
+    color: #3f464d;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #3f464d;
+    cursor: pointer;
+}
+
 .inner {
     width: 100%;
     height: 100%;
@@ -35,6 +61,11 @@ header {
 .head-container .head-brand {
     font-weight: bold;
     font-size: 1.2rem;
+}
+
+.head-container .head-brand a:hover {
+    cursor: pointer;
+    color:aqua;
 }
 
 .head-container .head-blog {
