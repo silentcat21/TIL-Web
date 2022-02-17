@@ -38,6 +38,7 @@ a:hover {
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
 header {
@@ -73,9 +74,117 @@ header {
     font-size: 1.2rem;
 }
 
+section {
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+}
+
+.main {
+    height: 360px;
+    background-image: url("../img/fun-coding-mark.png");
+    z-index: 1;
+    background-size: cover;
+    background-position: center 10%;
+    background-repeat: no-repeat;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    opacity: 0.8;
+    z-index: 2;
+    margin-top: 60px;
+}
+
+.title-container {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    z-index: 3;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+
+.message {
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #fff;
+}
+
+.skill-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.skill {
+    width: 25%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 9px;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+    box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
+}
+
+.skill-icon {
+    font-size: 2.5rem;
+    margin: 0 5px;
+}
+
+.skill-title {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.skill-name {
+    font-weight: bold;
+    color: #545e6f;
+    margin-bottom: 0.2rem;
+}
+
+.skill-usage {
+    font-size: 0.9rem;
+    color: #545e6f;
+}
+
+.python-style {
+    color: #2186c4;
+}
+
+.chart-style {
+    color:rgba(155, 172, 59);
+    width: 35px;
+}
+
+.appstore-style {
+    color:rgb(62, 9, 207)
+}
+
+.vue-style {
+    color: rgb(25, 151, 93);
+}
+/*https://developer.mozilla.org/ko/docs/Web/CSS/box-shadow  <css 박스 쉐도우*/
+
 @media only screen and (min-width: 1200px) {
     .inner {
         max-width: 1200px;
     }
 }
     
+@media only screen and (max-width: 980px) {
+    .skill-container {
+        display: none;
+    }
+}
