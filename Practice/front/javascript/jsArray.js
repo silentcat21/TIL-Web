@@ -121,5 +121,39 @@
                 let myArray = [1, 2, 'Sang', 100];
                 let index = myArray.indexOf('Sang');
                 console.log(index);
+        - findIndex
+            - 배열의 아이템이 객체일 경우, 해당 객체에서 지정한 데이터 위치를 찾을 수 있는 방법을 제공
+                const myArray = [
+                    {
+                        id: 1,
+                        name: 'Sang min'
+                    },
+                    {
+                        id: 2,
+                        name: 'Alex'
+                    }
+                ];
+                console.log(myArray.indexOf('Alex'));
+                console.log(myArray.findIndex(item => item.name === 'Alex'));
+        - find
+            - findIndex 와 유사하지만, 지정한 데이터 위치치를 리턴하는 것이 아니라, 지정한 데이터가 들어 있는 객체를 리턴함
+                const myArray = [
+                    {
+                        id: 1,
+                        name: 'Sang min'
+                    },
+                    {
+                        id: 2,
+                        name: 'Alex'
+                    }
+                ]
+                console.log(myArray.indexOf('Alex'));
+                console.log(myArray.findIndex(item => item.name === 'Alex'));
+                console.log(myArray.find(item => item.name === 'Alex'));
+        - filter
+            - 배열에서 특정 조건에 맞는 아이템만 추출할 때 사용하는 기능
+                let myArray = [1,2,3,4,5,6,7,8,9];
+                let even = myArray.filter(item => item % 2 === 0);
+                console.log(even);
         
 */
