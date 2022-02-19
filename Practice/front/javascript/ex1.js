@@ -1,3 +1,15 @@
-const myArray1 = [1, 2, 3];
-const myArray2 = [...myArray1, 4, 5, 6];
-console.log(myArray2);
+function func1(callback) {
+    setTimeout(() => {
+        console.log("1");
+        setTimeout(() => {
+            console.log("2");
+            setTimeout(() => {
+                callback();
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}
+function func2() {
+    console.log("3");
+}
+func1(func2);
