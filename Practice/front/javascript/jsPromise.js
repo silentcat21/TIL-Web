@@ -110,5 +110,161 @@
                         - failureCallback: 작업 싪래 시의 실행 함수
                         promise.then(successCallback, failureCallback)
                 예제 코드:
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        let num = 10;
+                        if (num >= 11) {
+                            resolve(num);
+                        } else {
+                            reject("error");
+                        }
+                    }, 1000)
+                });
+                promise.then(
+                    (num) => {
+                        console.log("success", num);
+                    },
+                    (err) => {
+                        console.log(err);
+                    }
+                );
+                then 메서드에 하나의 함수만 선언할 경우, 이는 successCallback 동작만 선언한 셈임
+        
+        - catch 메서드
+            - 실행 중, 예외상황을 처리함
+            - failureCallback가 정의되어 있지 않을 경우, reject 시에도 catch메서드를 호출함
+            //Promise 객체 생성
+            const run - new Promise((resolve, reject) => {
+                //비동기 작업 수행
+                setTimeout(() => {
+                    let num = 10;
+                    if (num >= 11) {
+                        //비동기 작업 성공
+                        resolve(num);
+                    } else {
+                        //비동기 작업 실패
+                        reject('this is an error');
+                    }
+                }, 1000)
+            });
 
+            run.then((num) => {
+                console.log("success", num);
+            }).catch((error) => {
+                console.log(error);
+            });
+        
+        - chaining
+            - then 메서드를 연결해서, 순차적으로 실행되야할 코드를 연결할 수 있음
+            - then과 catch 메서드도 함께 연결해서 실행가능함
+                const run = new Promise((resolve, reject) => {
+                    console.log("start");
+                    resolve();
+                });
+
+                run.then(() => {
+                    console.log("success 1");
+                    throw new Error("error");
+                }).catch((err) => {
+                    console.log(err);
+                }).then(() => {
+                    console.log("success 2");
+                });
+        - throw
+            - 사용자 정의 예외를 던질 때 사용
+                - catch 블록이 있으면 catch 블록으로 전달되고, 그렇지 않으면 프로그램을 종료함
+            - 보통 다음과 같은 구문으로 사용됨(Error 클래스의 객체를 만들어서, 전달함)
+                throw new Error('에러메세지')
+        
+        - chaining과 catch
+            - 일반적으로는 catch를 chaining 맨 마지막에 추가해서, 전체 코드의 에러 케이스를 간결히 핸들링
+            const run = new Promise((resolve, reject) => {
+                console.log("start");
+                resolve(1);
+            });
+
+            run.then((num) => {
+                console.log("success1", num);
+            }).then((num) => {
+                console.log("success2", num + 1);
+                throw new Error("error");
+            }).then((num) => {
+                console.log("success3", num + 2);
+            }).catch((err) => {
+                console.log("error");
+            });
+        
+        - chaining과 return
+            const run = new Promise((resolve, reject) => {
+                console.log("start");
+                resolve(1);
+                });
+
+                run.then((num) => {
+                    console.log("success1", num);
+                    return num  //return 값이 다음 then의 인자로 넘겨짐
+                }).then((num) => {
+                    console.log("success2", num + 1);
+                    throw new Error("error1");
+                }).then((num) => {
+                    console.log("success3", num + 2);
+                }).catch((err) => {
+                    console.log("error2");
+                });
+        
+        - finally
+            - finally()는 Promise가 resolve 되든 reject되든 마지막에 해당 함수를 실행함
+                const run = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        let num = 10;
+                        if (num >= 9) {
+                            resolve(num);
+                        } else {
+                            reject("this is an error");
+                        }
+                    }, 500);
+                });
+
+                run
+                .then((num) => {
+                    console.log("success", num);
+                    return 2;
+                })
+                .then((num) => {
+                    console.log("success2", num);
+                    return 3;
+                })
+                .finally((num) => {
+                    console.log("finally", num);
+                }) //return 함수인자를 받아오진 않음 undefined
+
+        - Promise.all
+            - 동기화 처리할 Promise를 묶어서 한번에 실행
+            - 즉 여러 함수가 다 실행이 완료된 후에, then 구문을 실행함
+                const promise1 = new Promise((resolve, reject) => {
+                    setTimeout(() => resolve("100ms"), 100);
+                    console.log("promise1");
+                });
+                const promise2 = new Promise((resolve, reject) => {
+                    setTimeout(() => resolve("500ms"), 500);
+                    console.log("promise2");
+                });
+
+                promise.all([promise1, promise2]).then((data) => {
+                    console.log(data);
+                });
+        - Promise.race
+            - 여러 함수 중, 제일 빠르게 실행완료된 함수만 then 구문을 실행함
+                const promise1 = new Promise((resolve, reject) => {
+                    setTimeout(() => resolve("100ms"), 100);
+                    console.log("promise1");
+                });
+                const promise2 = new Promise((resolve, reject) => {
+                    setTimeout(() => resolve("500ms"), 500);
+                    console.log("promise2");
+                });
+
+                Promise.race([promise1, promise2]).then((data) => {
+                    console.log(data);
+                });
 */
