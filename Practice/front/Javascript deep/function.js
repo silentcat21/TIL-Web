@@ -1,6 +1,15 @@
-const showMessage= (a) => {
-    alert(a)
+let salaries = {
+    John: 100,
+    Ann: 160,
+    Pete: 130
+  }
+
+let sum = () => {
+    sumValue = 0
+    for (let key in salaries) {
+        sumValue += salaries[key]
+    }
+    return sumValue
 }
 
-const inputMessage = prompt('메세지를 입력해주세요', '');
-showMessage(inputMessage)
+console.log(sum())
