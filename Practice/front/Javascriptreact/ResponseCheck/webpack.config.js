@@ -33,7 +33,10 @@ module.exports = {
                     'react-refresh/babel'
                 ],
             },
-        }],
+            },{
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+          }],
     },
 
     plugins: [

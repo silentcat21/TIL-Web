@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Try extends Component {
-
-
-    render() {
-        return (
-            <li>
-                <b>{this.props.value.fruit}</b> {this.props.value.taste} = {this.props.index}
-                <div>컨텐츠1</div>
-                <div>컨텐츠2</div>
-                <div>컨텐츠3</div>
-            </li>
-        );
-        
-    };
+const Try = ({ tryInfo }) => {
+    
+    return (
+        <li>
+            <div>{tryInfo.try}</div>
+            <div>{tryInfo.result}</div>
+        </li>
+    );
 }
 
 export default Try;

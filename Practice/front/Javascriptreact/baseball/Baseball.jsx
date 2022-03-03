@@ -25,17 +25,23 @@ class Baseball extends Component {
             this.setState({
                 result: '홈런!',
                 tries: [...this.state.tries, { try: this.state.value, result: '홈런!'}]
-            })
-        } else {
+            });
+            alert('게임을 다시 시작합니다!');
+                this.setState({ 
+                    value: '',
+                    answer: getNumbers(),
+                    tries: [],
+            });
+        } else { // 답이 틀렸을 경우
             const answerArray = this.state.value.split('').map((v) => parseInt(v));
             let strike = 0;
             let ball = 0;
             if (this.state.tries.length >= 9) {
                 this.setState({
-                    result: `10번 넘게 틀려서 실패 답은 ${answer.join(',')}`,
+                    result: `10번 넘게 틀려서 실패 답은 ${this.state.answer.join(',')}`,
                 });
                 alert('게임을 다시 시작합니다!');
-                this.setState({
+                this.setState({ 
                     value: '',
                     answer: getNumbers(),
                     tries: [],
@@ -62,12 +68,6 @@ class Baseball extends Component {
         console.log(this.state.value)
     };
 
-    fruit = [
-        {fruit : '사과', taste: '맛있다'},
-        {fruit : '귤', taste: '맛없다'},
-        {fruit : '밤', taste: '맛'},
-    ];
-
     render() {
         return (
             <>
@@ -78,9 +78,9 @@ class Baseball extends Component {
                 </form>
                 <div>시도: {this.state.tries.length}</div>
                 <ul>
-                    {this.fruit.map((v, i)=> {
+                    {this.state.tries.map((v, i)=> {
                         return (
-                            <Try value={v} index={i} key={v.fruit} />
+                            <Try tryInfo={v} index={i} key={`${i + 1}차 시도 :`} />
                         );
                     })}
                 </ul>

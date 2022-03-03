@@ -1,5 +1,5 @@
 const React = require('react');
 const ReactDom = require('react-dom');
-import Baseball from './Baseball'
+import Baseballhook from './Baseballhook'
 
-ReactDom.render(<Baseball />, document.querySelector('#root'));
+ReactDom.render(<Baseballhook />, document.querySelector('#root'));
