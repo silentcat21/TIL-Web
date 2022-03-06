@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Menu, Input, Row, Col, Carousel } from 'antd';
 import styled from 'styled-components';
 import {HomeOutlined, UserOutlined, UserAddOutlined} from '@ant-design/icons'
+import { useSelector } from 'react-redux';
 
 
 import LoginForm from './LoginForm';
@@ -31,7 +32,9 @@ const Layout = styled.div`
 
 const AppLayout = ({ children }) => {
     const [current,setCurrent] = useState('')
-    const [isLogedIn, setIsLoggedIn] = useState(false)
+
+    const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
     const handleClick = (e) => {
         setCurrent(e.key)
     }
@@ -58,7 +61,7 @@ const AppLayout = ({ children }) => {
                 </MenuStyle>
                 <Row gutter={8}>
                     <Col xs={24} md={6} >
-                        {isLogedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn} /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />}
+                        {isLoggedIn ? <UserProfile/> : <LoginForm/>}
                     </Col>
                     <Col xs={24} md={12} >
                         {children}

@@ -31,6 +31,12 @@
 
  - 컬럼 사이에 간격주는 <Row gutter={?}>
 
- -버튼 태그에서 htmlType="submit" 버튼이 해당하는 폼을 제출하는 버튼임을 명시
+ - 버튼 태그에서 htmlType="submit" 버튼이 해당하는 폼을 제출하는 버튼임을 명시
 
  - antd에서 onFinish는 event.preventDefault가 이미 적용되어 있어서 사용하면 안됨 
+
+ - 커스텀 훅 만드는법 공부
+
+ - 넥스트에 리덕스를 붙히기 위해 next-wrapper 라이브러리 사용 store폴더 만든 후 configureStore.js 생성 기본세팅 이해하기
+
+ - store는 리듀서를 불러오는 곳 store, reducer, dispatch 이해

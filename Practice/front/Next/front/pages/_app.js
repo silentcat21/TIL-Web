@@ -2,6 +2,7 @@ import 'antd/dist/antd.css'
 import propTypes from 'prop-types';
 import React from 'react';
 import Head from 'next/head';
+import wrapper from '../store/configureStore';
 
 const App = ({ Component }) => {
     return (
@@ -22,4 +23,4 @@ App.propTypes = {
     Component: propTypes.elementType.isRequired,
 }
 
-export default App;
+export default wrapper.withRedux(App); //모든 앱을 wrapper로 감싸줌 Provide 로 사용할 필요 없음

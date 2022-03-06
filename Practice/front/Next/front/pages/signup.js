@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import AppLayout from '../components/AppLayout';
 import Head from 'next/head';
-import {Form, Input, Checkbox} from 'antd';
+import {Form, Input, Checkbox, Button} from 'antd';
 import useInput from '../hooks/useInput';
 import styled from 'styled-components';
 
@@ -33,14 +33,20 @@ const Signup = () => {
     const [termError, setTermError] = useState(true)
     const [term, setTerm] = useState('');
     const onChangeTerm = useCallback((e) => {
-        setTerm(e.targe.checked);
+        setTerm(e.target.checked);
         setTermError(false)
-    },[])
+    },[term])
 
     
     const onSubmit = useCallback(() => {
-
-    },[]);
+        if (password !== passwordCheck) {
+            return setPasswordError(true);
+        }
+        if (!term) {
+            return setTermError(true);
+        }
+        console.log(id, nickname, password);
+    },[password, passwordCheck, term]);
 
     return (
         <>
@@ -83,8 +89,13 @@ const Signup = () => {
                         ? <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
                         : <CollectMessage>확인</CollectMessage> }
                     </div>
-                    <Checkbox name="user-certify" checked={term} onChage={onChangeTerm}></Checkbox>
-                    {termError && <TermError>약관에 동의하셔야 합니다.</TermError>}
+                    <div>
+                        <Checkbox name="user-term" checked={term} onChange={onChangeTerm}></Checkbox>
+                        {termError && <TermError>약관에 동의하셔야 합니다.</TermError>}
+                    </div>
+                    <div style={{ marginTop: 10 }}>
+                        <Button type="primary" htmlType="submit">가입하기</Button>
+                    </div>
                 </Form>
             </AppLayout>
         </>
