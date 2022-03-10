@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="문서에 대한 설명, 구글이 의외로 참고 안한다고 알려져있음">
+    <meta name="author" content="sangmin">
+    <meta name="keyword" content="practive, html">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, userscalable=no">
+    <title>html 연습</title>
+    <link rel="stylesheet" href="../css.css">
+    <link rel="icon" href="none">
+    <!--웹 접근성, SEO 고려 해야할 것들
+            1. 핵심 키워드를 중심으로 콘텐츠 구성 (Google Ads, 구글 키워드 플래너 활용 학습필요)
+                - decription에 키워드가 포함되있어야 함, H1(H1태그는 딱 한번 만!) 태그에 키워드가 포함되있어야 함, 페이지에서 키워드 밀도가 높아야함
+            2. 소셜 메타 태그
+            3. 이미지 alt 값 설정(접근성)
+                - 이미지를 통해 백링크 될 경우 ALT태그가 링크에 대한 텍스트 역할을 한다. ALT태그 안에 주요 키워드가 포함되는 것이 좋다.
+            4. 앵커<a> 텍스트는 간결하고 예측 가능하게 지정
+            5. 모바일 친화적인 웹사이트 구성(반응형 웹, 구글의 모바일 친화적 방침으로 모바일 버전의 페이지를 먼저 색인(index))
+                - https://search.google.com/test/mobile-friendly?hl=ko(모바일 친화성 검사)
+                - https://support.google.com/webmasters/answer/9063469#about_data(모바일 사용 편의성 보고서)
+            6. 길고 복잡한 페이지 주소(URL) 개선
+            7. 사이트맵(sitemap.xml), 나의웹사이트주소.com/sitemap.xml
+                - sitemap.xml 에서 priority가 부여된 페이지가 상위노출에 유리함
+            8. 인터널 링크(Internal Link)
+            9. 외부 링크(External Link)
+            10. 스키마 마크업
+            11. 이미지 최적화(https://www.hedleyonline.com/ko/blog/seo-image-optimization/)
+            12. 구글 SEO 가이드(https://developers.google.com/search/docs/beginner/get-started?hl=ko)
+            13. 도메인 유효기간
+                - 유효기간이 매우 긴 도메인은 좋은 목적의 잘 관리되는 사이트로 간주함
+            14. 도메인에 키워드가 일치하는 경우
+            15. 최상위 도메인에 국가 코드 포함
+                - 해당 국가에선 우선순위가 높아지나 국제적으로 불리할 수 있음
+            16. 웹문서 title에 키워드 포함
+            17. 페이지 로딩 속도가 느리면 불리함 (11번 내용 이유)
+            18. 오래되었어도 자주 업데이트 되는 페이지
+    -->
+</head>
+<body>
+    <!-- 알아두면 좋은 지식
+            1. IOS에서 safari는 smooth scrolling이 지원되지 않음, 자바스크립트 폴리필 필요(https://joyful-development.tistory.com/22)
+
+    -->
+    <!-- 공부 내용 정리
+        1. noopener 지정
+            noopener(노오프너)를 지정하면, 링크된 페이지에서 window.opener을 사용해서 링크를 건 페이지를 참조(reference)할 수 없게 됩니다.
+             더불어 링크된 페이지와 링크를 건 페이지는 별개의 프로세스로 취급되기 때문에 서로 연결되어 퍼포먼스가 떨어지는 일도 없게 됩니다.
+        2. noreferrer 지정
+            noreferrer(노리퍼러)를 지정하면 다른 페이지로 이동할 때, 링크를 건 페이지의 주소 등의 정보를 브라우저가 Referer: HTTP 헤더로 리퍼러(referer 또는 referrer)로서 송신하지 않습니다.
+    -->
+    <div>
+        <a href="www.naver.com" target="_blank" rel="noopener noreferrer">보안상 취약때문에 noopener, noreferrer 사용</a>
+    </div>
+    <div>
+        <img src="none" alt="이미지에 알트 넣어서 접근성 향상시키기">
+    </div>
+    
+    <script src="../main.js"></script>
+</body>
+</html>
