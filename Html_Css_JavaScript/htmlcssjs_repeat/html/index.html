@@ -48,7 +48,12 @@
             noopener(노오프너)를 지정하면, 링크된 페이지에서 window.opener을 사용해서 링크를 건 페이지를 참조(reference)할 수 없게 됩니다.
              더불어 링크된 페이지와 링크를 건 페이지는 별개의 프로세스로 취급되기 때문에 서로 연결되어 퍼포먼스가 떨어지는 일도 없게 됩니다.
         2. noreferrer 지정
-            noreferrer(노리퍼러)를 지정하면 다른 페이지로 이동할 때, 링크를 건 페이지의 주소 등의 정보를 브라우저가 Referer: HTTP 헤더로 리퍼러(referer 또는 referrer)로서 송신하지 않습니다.
+            noreferrer(노리퍼러)를 지정하면 다른 페이지로 이동할 때, 링크를 건 페이지의 주소 등의 정보를 브라우저가 
+            Referer: HTTP 헤더로 리퍼러(referer 또는 referrer)로서 송신하지 않습니다.
+        3. 시멘틱 웹 태그
+            header, nav, aside, section, article, footer
+        4. 스타일 초기화 normalize.css
+            https://cdnjs.com/libraries/normalize 
     -->
     <div>
         <a href="www.naver.com" target="_blank" rel="noopener noreferrer">보안상 취약때문에 noopener, noreferrer 사용</a>
@@ -69,7 +74,73 @@
       >
 
     </form>
-    
+    <input type="사용자 입력 받는 인터페이스 설정 button, checkbox, color, email, radio, text, file 등" required placeholder="입력할 값에 대한 힌트" autofocus/>
+    <input type="file" name="file" accept=".gif, .jpg, .png 해당 확장자로만 파일을 선택할 수 있게 함 audio/*: 모든 오디오 파일 video/*: 모든 비디오 파일, image/*: 모든 이미지 파일"
+    />
+    <input type="submit: form의 데이터를 전송하는 버튼이 생성, reset: 폼안의 데이터를 초기화" value="전송"/>
+    <!--label
+        입력창의 설명, 보통 input과 연결해서 같이 쓰이며, 연결을 원할경우 input에 반드시 id 속성이 있어야 한다.
+        또한 label의 텍스트를 클릭해도 input과 연결되어 텍스트 창이나 체크 박스 등이 선택된다.
+        <label for="input 연결">텍스트</label>
+        <input type="text" id="input연결"> jsx에서는 htmlFor로 함
+
+        textarea 텍스트 박스
+        여러 줄의 텍스트를 입력할 수 있는 폼 요소
+        - rows: 아래줄의 수
+        - cols : 옆의 칸 수
+        - 만약 텍스트 내용이 텍스트 박스보다 크면 자동으로 스크롤바가 생성
+        <textarea name="comments" id="" cols="30" rows="10"></textarea>
+    -->
+
+    <!--
+        CSS 정리
+        - rem
+            em과 달리 rem은 root em으로 최상위요소(html) 사이즈를 기준으로 함
+        - 반응형 viewport 단위
+            vw: viewport 너비 1~100
+            vh: 높이
+            vmin: 너비또는 높이 중 작은쪽
+            vmax: 너비또는 높이 중 큰쪽
+        - 색상 고르는 사이트
+            https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+        - RGBA 와 opacity 차이점
+            opacity는 모든 자식요소에 투명도 값이 상속됨
+            RGBA값으로 설정하면 해당 css만 설정
+        - 가상 클래스 종류
+            예) a:link
+            link: 방문하지 않은 링크 요소
+            visited: 방문했던 요소
+            hover: 마우스가 올라간 상태
+            active: 링크 요소를 클릭한 상태(누르고 있는 상태)
+            focus: 특정요소에 포커스가 있는 상태(input태그에 포커스 되있을때 등)
+        
+        - UI 요소 상태 셀렉터
+            특정 UI요소 상태에 따른 셀렉터
+            enable: UI 셀렉터가 사용 가능한 상태
+            disabled: UI 셀렉터가 사용 불가능한 상태
+            checked: UI 셀렉터가 체크된 상태
+            indeterminate: UI 셀렉터가 결정되지 않은 상태(체크 박스에 체크 안되어있는 등)
+            예) input[type='radio']:indeterminate + span {color: red;}
+
+        - 정합성 체크 셀렉터
+            valid(셀렉터) : 정합성이 검증된 input 또는 form 요소 선택
+            invalid(셀렉터) : 정합성 검증이 실패한 input 또는 form 요소 선택
+            예)
+                input[type="text"]:invalid {
+                    background-color: red;
+                }
+                input[type="text"]:valid {
+                    background-color: yellow;
+                }
+            pattern 속성
+            input 태그로 생성된 입력창에 넣은 데이터가 원하는 데이터 포맷에 맞으면 정합성이 검증됬다고 판단함, pattern 값은 정규표현식
+            http://www.w3bai.com/ko/tags/att_input_pattern.html 참고 링크
+
+        - 가상 요소 셀렉터
+        다른 가상 셀렉터와 달리 두개의 콜론(::) 사용
+            after : 요소의 뒤에 위치하는 공간 선택, content프로퍼티와 함께 사용
+            before: 요소의 앞에 위치하는 공간 선택 ,content 프로퍼티와 함께 사용
+    -->
     <script src="../main.js"></script>
 </body>
 </html>
